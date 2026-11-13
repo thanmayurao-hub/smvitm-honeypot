@@ -1,0 +1,918 @@
+[
+  {
+    "ts": "2025-11-13T11:24:00Z",
+    "ip": "127.0.0.1",
+    "username": "anu",
+    "password": "1223",
+    "threat_level": "LOW",
+    "threat_score": 25,
+    "attack_type": "FAILED_LOGIN",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
+  },
+  {
+    "ts": "2025-11-13T18:36:13Z",
+    "ip": "127.0.0.1",
+    "username": "anu",
+    "password": "123",
+    "threat_level": "MEDIUM",
+    "threat_score": 45,
+    "attack_type": "REPEATED_ATTEMPT",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
+  },
+  {
+    "ts": "2026-10-14T06:40:14.587655Z",
+    "ip": "127.0.0.1",
+    "username": "anu",
+    "password": "1223",
+    "threat_level": "LOW",
+    "threat_score": 20,
+    "attack_type": "FAILED_LOGIN",
+    "user_agent": "MorphPot-TestClient/1.0"
+  },
+  {
+    "ts": "2026-10-14T06:40:14.594871Z",
+    "ip": "127.0.0.1",
+    "username": "anu",
+    "password": "123",
+    "threat_level": "LOW",
+    "threat_score": 30,
+    "attack_type": "FAILED_LOGIN",
+    "user_agent": "MorphPot-TestClient/1.0"
+  },
+  {
+    "ts": "2026-10-14T06:40:14.613605Z",
+    "ip": "127.0.0.1",
+    "username": "anu",
+    "password": "secret2025",
+    "threat_level": "CRITICAL",
+    "threat_score": 95,
+    "attack_type": "BRUTE_FORCE_PROBE",
+    "user_agent": "MorphPot-TestClient/1.0"
+  },
+  {
+    "ts": "2026-10-14T06:40:17.631714Z",
+    "ip": "127.0.0.1",
+    "username": "' OR 1=1--",
+    "password": "anypassword",
+    "threat_level": "CRITICAL",
+    "threat_score": 100,
+    "attack_type": "FAILED_LOGIN",
+    "user_agent": "sqlmap/1.7#stable"
+  },
+  {
+    "ts": "2026-10-14T06:40:17.649685Z",
+    "ip": "127.0.0.1",
+    "path": "/../../etc/passwd",
+    "method": "GET",
+    "threat_level": "CRITICAL",
+    "threat_score": 100,
+    "attack_type": "PATH_TRAVERSAL",
+    "detail": "Probing sensitive path: /../../etc/passwd",
+    "user_agent": "Nikto/2.1.6"
+  },
+  {
+    "ts": "2026-10-14T06:40:20.663334Z",
+    "ip": "127.0.0.1",
+    "path": "/../../etc/passwd",
+    "threat_level": "CRITICAL",
+    "threat_score": 100,
+    "attack_type": "RECON_SCANNER_PROBE",
+    "detail": "Probing non-existent sensitive path /../../etc/passwd",
+    "user_agent": "Nikto/2.1.6"
+  },
+  {
+    "ts": "2026-10-14T06:40:23.685178Z",
+    "ip": "127.0.0.1",
+    "username": "N/A (Exfiltration Probe)",
+    "threat_level": "CRITICAL",
+    "threat_score": 100,
+    "attack_type": "HONEYTOKEN_CANARY_TRIPPED",
+    "detail": "Decoy file 'aws_production_credentials.csv' was exfiltrated by client.",
+    "user_agent": "MorphPot-TestClient/1.0"
+  },
+  {
+    "ts": "2026-10-14T06:40:26.706361Z",
+    "ip": "127.0.0.1",
+    "username": "terminal_session",
+    "threat_level": "CRITICAL",
+    "threat_score": 100,
+    "attack_type": "HONEYPOT_SHELL_COMMAND",
+    "detail": "Command executed in trap shell: whoami",
+    "user_agent": "MorphPot-TestClient/1.0"
+  },
+  {
+    "ts": "2026-10-14T06:40:29.723576Z",
+    "ip": "127.0.0.1",
+    "username": "terminal_session",
+    "threat_level": "CRITICAL",
+    "threat_score": 100,
+    "attack_type": "HONEYPOT_SHELL_COMMAND",
+    "detail": "Command executed in trap shell: uname -a",
+    "user_agent": "MorphPot-TestClient/1.0"
+  },
+  {
+    "ts": "2026-10-14T06:40:29.741681Z",
+    "ip": "127.0.0.1",
+    "path": "/api/terminal/exec",
+    "method": "POST",
+    "threat_level": "CRITICAL",
+    "threat_score": 100,
+    "attack_type": "PATH_TRAVERSAL",
+    "detail": "Probing sensitive path: /api/terminal/exec",
+    "user_agent": "MorphPot-TestClient/1.0"
+  },
+  {
+    "ts": "2026-10-14T06:40:32.758022Z",
+    "ip": "127.0.0.1",
+    "username": "terminal_session",
+    "threat_level": "CRITICAL",
+    "threat_score": 100,
+    "attack_type": "HONEYPOT_SHELL_COMMAND",
+    "detail": "Command executed in trap shell: cat .env",
+    "user_agent": "MorphPot-TestClient/1.0"
+  },
+  {
+    "ts": "2026-10-14T06:40:35.775423Z",
+    "ip": "127.0.0.1",
+    "username": "terminal_session",
+    "threat_level": "CRITICAL",
+    "threat_score": 100,
+    "attack_type": "HONEYPOT_SHELL_COMMAND",
+    "detail": "Command executed in trap shell: ls -la",
+    "user_agent": "MorphPot-TestClient/1.0"
+  },
+  {
+    "ts": "2026-10-14T06:45:11.550994Z",
+    "ip": "127.0.0.1",
+    "path": "/favicon.ico",
+    "threat_level": "CRITICAL",
+    "threat_score": 100,
+    "attack_type": "RECON_SCANNER_PROBE",
+    "detail": "Probing non-existent sensitive path /favicon.ico",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0"
+  },
+  {
+    "ts": "2026-10-14T06:49:04.261630Z",
+    "ip": "127.0.0.1",
+    "username": "demo@acme.example",
+    "password": "anu123",
+    "threat_level": "CRITICAL",
+    "threat_score": 100,
+    "attack_type": "FAILED_LOGIN",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0"
+  },
+  {
+    "ts": "2026-10-14T06:49:14.155247Z",
+    "ip": "127.0.0.1",
+    "username": "demo@acme.example",
+    "password": "anu1234",
+    "threat_level": "CRITICAL",
+    "threat_score": 100,
+    "attack_type": "FAILED_LOGIN",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0"
+  },
+  {
+    "ts": "2026-10-14T06:49:22.302808Z",
+    "ip": "127.0.0.1",
+    "username": "demo@acme.example",
+    "password": "anu12345",
+    "threat_level": "CRITICAL",
+    "threat_score": 95,
+    "attack_type": "BRUTE_FORCE_PROBE",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0"
+  },
+  {
+    "ts": "2026-10-14T07:08:33.606428Z",
+    "ip": "127.0.0.1",
+    "username": "4MW21CS001",
+    "password": "vtu@2025",
+    "threat_level": "LOW",
+    "threat_score": 20,
+    "attack_type": "FAILED_LOGIN",
+    "user_agent": "SMVITM-PentestClient/2.0"
+  },
+  {
+    "ts": "2026-10-14T07:08:33.616614Z",
+    "ip": "127.0.0.1",
+    "username": "4MW21CS001",
+    "password": "smvitm123",
+    "threat_level": "LOW",
+    "threat_score": 30,
+    "attack_type": "FAILED_LOGIN",
+    "user_agent": "SMVITM-PentestClient/2.0"
+  },
+  {
+    "ts": "2026-10-14T07:08:33.633112Z",
+    "ip": "127.0.0.1",
+    "username": "4MW21CS001",
+    "password": "password2026",
+    "threat_level": "CRITICAL",
+    "threat_score": 95,
+    "attack_type": "BRUTE_FORCE_PROBE",
+    "user_agent": "SMVITM-PentestClient/2.0"
+  },
+  {
+    "ts": "2026-10-14T07:08:36.651519Z",
+    "ip": "127.0.0.1",
+    "username": "' UNION SELECT usn, student_name, ia_marks FROM smvitm_marks_master--",
+    "password": "password",
+    "threat_level": "CRITICAL",
+    "threat_score": 100,
+    "attack_type": "FAILED_LOGIN",
+    "user_agent": "sqlmap/1.7#stable"
+  },
+  {
+    "ts": "2026-10-14T07:08:36.685516Z",
+    "ip": "127.0.0.1",
+    "path": "/../../var/www/smvitm-academic-portal/vtu_exam_vault",
+    "method": "GET",
+    "threat_level": "CRITICAL",
+    "threat_score": 100,
+    "attack_type": "PATH_TRAVERSAL",
+    "detail": "Probing sensitive path: /../../var/www/smvitm-academic-portal/vtu_exam_vault",
+    "user_agent": "Nikto/2.1.6"
+  },
+  {
+    "ts": "2026-10-14T07:08:39.704986Z",
+    "ip": "127.0.0.1",
+    "path": "/../../var/www/smvitm-academic-portal/vtu_exam_vault",
+    "threat_level": "CRITICAL",
+    "threat_score": 100,
+    "attack_type": "RECON_SCANNER_PROBE",
+    "detail": "Probing non-existent sensitive path /../../var/www/smvitm-academic-portal/vtu_exam_vault",
+    "user_agent": "Nikto/2.1.6"
+  },
+  {
+    "ts": "2026-10-14T07:08:39.731651Z",
+    "ip": "127.0.0.1",
+    "path": "/files/download/VTU_Confidential_End_Sem_Question_Paper_Dec2025.xlsx",
+    "method": "GET",
+    "threat_level": "CRITICAL",
+    "threat_score": 100,
+    "attack_type": "SUSPICIOUS_PATH",
+    "detail": "Targeting sensitive endpoint /vtu",
+    "user_agent": "SMVITM-PentestClient/2.0"
+  },
+  {
+    "ts": "2026-10-14T07:08:42.749084Z",
+    "ip": "127.0.0.1",
+    "username": "N/A (Exfiltration Probe)",
+    "threat_level": "CRITICAL",
+    "threat_score": 100,
+    "attack_type": "HONEYTOKEN_CANARY_TRIPPED",
+    "detail": "Decoy file 'VTU_Confidential_End_Sem_Question_Paper_Dec2025.xlsx' was exfiltrated by client.",
+    "user_agent": "SMVITM-PentestClient/2.0"
+  },
+  {
+    "ts": "2026-10-14T07:08:45.781640Z",
+    "ip": "127.0.0.1",
+    "username": "terminal_session",
+    "threat_level": "CRITICAL",
+    "threat_score": 100,
+    "attack_type": "HONEYPOT_SHELL_COMMAND",
+    "detail": "Command executed in trap shell: whoami",
+    "user_agent": "SMVITM-PentestClient/2.0"
+  },
+  {
+    "ts": "2026-10-14T07:08:48.818655Z",
+    "ip": "127.0.0.1",
+    "username": "terminal_session",
+    "threat_level": "CRITICAL",
+    "threat_score": 100,
+    "attack_type": "HONEYPOT_SHELL_COMMAND",
+    "detail": "Command executed in trap shell: uname -a",
+    "user_agent": "SMVITM-PentestClient/2.0"
+  },
+  {
+    "ts": "2026-10-14T07:08:48.848715Z",
+    "ip": "127.0.0.1",
+    "path": "/api/terminal/exec",
+    "method": "POST",
+    "threat_level": "CRITICAL",
+    "threat_score": 100,
+    "attack_type": "PATH_TRAVERSAL",
+    "detail": "Probing sensitive path: /api/terminal/exec",
+    "user_agent": "SMVITM-PentestClient/2.0"
+  },
+  {
+    "ts": "2026-10-14T07:08:51.864469Z",
+    "ip": "127.0.0.1",
+    "username": "terminal_session",
+    "threat_level": "CRITICAL",
+    "threat_score": 100,
+    "attack_type": "HONEYPOT_SHELL_COMMAND",
+    "detail": "Command executed in trap shell: cat .env",
+    "user_agent": "SMVITM-PentestClient/2.0"
+  },
+  {
+    "ts": "2026-10-14T07:08:54.889472Z",
+    "ip": "127.0.0.1",
+    "username": "terminal_session",
+    "threat_level": "CRITICAL",
+    "threat_score": 100,
+    "attack_type": "HONEYPOT_SHELL_COMMAND",
+    "detail": "Command executed in trap shell: ls -la",
+    "user_agent": "SMVITM-PentestClient/2.0"
+  },
+  {
+    "ts": "2026-10-14T07:15:47.300549Z",
+    "ip": "127.0.0.1",
+    "path": "/favicon.ico",
+    "threat_level": "CRITICAL",
+    "threat_score": 100,
+    "attack_type": "RECON_SCANNER_PROBE",
+    "detail": "Probing non-existent sensitive path /favicon.ico",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36"
+  },
+  {
+    "ts": "2026-10-14T07:22:22.450895Z",
+    "ip": "127.0.0.1",
+    "path": "/favicon.ico",
+    "threat_level": "CRITICAL",
+    "threat_score": 100,
+    "attack_type": "RECON_SCANNER_PROBE",
+    "detail": "Probing non-existent sensitive path /favicon.ico",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0"
+  },
+  {
+    "ts": "2026-11-03T03:36:53.124103Z",
+    "ip": "2409:40f2:3146:3f48:c540:2e80:1e19:b3a",
+    "username": "4MW21CS001",
+    "password": "password2026",
+    "threat_level": "CRITICAL",
+    "threat_score": 95,
+    "attack_type": "SIMULATED_BRUTE_FORCE_TRAP",
+    "user_agent": "Python-urllib/3.14"
+  },
+  {
+    "ts": "2026-11-03T03:39:25.326079Z",
+    "ip": "2409:40f2:3146:3f48:c540:2e80:1e19:b3a",
+    "path": "/favicon.ico",
+    "threat_level": "CRITICAL",
+    "threat_score": 100,
+    "attack_type": "RECON_SCANNER_PROBE",
+    "detail": "Probing non-existent sensitive path /favicon.ico",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Antigravity/2.28.2 Chrome/152.0.7977.130 Electron/44.5.1 Safari/537.36"
+  },
+  {
+    "ts": "2026-11-03T03:39:36.236907Z",
+    "ip": "2409:40f2:3146:3f48:c540:2e80:1e19:b3a",
+    "path": "/favicon.ico",
+    "threat_level": "CRITICAL",
+    "threat_score": 100,
+    "attack_type": "RECON_SCANNER_PROBE",
+    "detail": "Probing non-existent sensitive path /favicon.ico",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Antigravity/2.28.2 Chrome/152.0.7977.130 Electron/44.5.1 Safari/537.36"
+  },
+  {
+    "ts": "2026-11-03T03:39:59.888055Z",
+    "ip": "2409:40f2:3146:3f48:c540:2e80:1e19:b3a",
+    "path": "/favicon.ico",
+    "threat_level": "CRITICAL",
+    "threat_score": 100,
+    "attack_type": "RECON_SCANNER_PROBE",
+    "detail": "Probing non-existent sensitive path /favicon.ico",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Antigravity/2.28.2 Chrome/152.0.7977.130 Electron/44.5.1 Safari/537.36"
+  },
+  {
+    "ts": "2026-11-03T03:40:24.195369Z",
+    "ip": "2409:40f2:3146:3f48:c540:2e80:1e19:b3a",
+    "path": "/favicon.ico",
+    "threat_level": "CRITICAL",
+    "threat_score": 100,
+    "attack_type": "RECON_SCANNER_PROBE",
+    "detail": "Probing non-existent sensitive path /favicon.ico",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Antigravity/2.28.2 Chrome/152.0.7977.130 Electron/44.5.1 Safari/537.36"
+  },
+  {
+    "ts": "2026-11-03T03:40:43.474037Z",
+    "ip": "2409:40f2:3146:3f48:c540:2e80:1e19:b3a",
+    "path": "/favicon.ico",
+    "threat_level": "CRITICAL",
+    "threat_score": 100,
+    "attack_type": "RECON_SCANNER_PROBE",
+    "detail": "Probing non-existent sensitive path /favicon.ico",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Antigravity/2.28.2 Chrome/152.0.7977.130 Electron/44.5.1 Safari/537.36"
+  },
+  {
+    "ts": "2026-11-03T03:41:21.554218Z",
+    "ip": "2409:40f2:3146:3f48:c540:2e80:1e19:b3a",
+    "path": "/favicon.ico",
+    "threat_level": "CRITICAL",
+    "threat_score": 100,
+    "attack_type": "RECON_SCANNER_PROBE",
+    "detail": "Probing non-existent sensitive path /favicon.ico",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Antigravity/2.28.2 Chrome/152.0.7977.130 Electron/44.5.1 Safari/537.36"
+  },
+  {
+    "ts": "2026-11-03T03:41:40.268340Z",
+    "ip": "2409:40f2:3146:3f48:c540:2e80:1e19:b3a",
+    "path": "/favicon.ico",
+    "threat_level": "CRITICAL",
+    "threat_score": 100,
+    "attack_type": "RECON_SCANNER_PROBE",
+    "detail": "Probing non-existent sensitive path /favicon.ico",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Antigravity/2.28.2 Chrome/152.0.7977.130 Electron/44.5.1 Safari/537.36"
+  },
+  {
+    "ts": "2026-11-03T03:43:05.608056Z",
+    "ip": "152.57.53.201",
+    "path": "/favicon.ico",
+    "threat_level": "LOW",
+    "threat_score": 25,
+    "attack_type": "RECON_SCANNER_PROBE",
+    "detail": "Probing non-existent sensitive path /favicon.ico",
+    "user_agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Mobile Safari/537.36"
+  },
+  {
+    "ts": "2026-11-03T03:44:11.847354Z",
+    "ip": "127.0.0.1",
+    "path": "/favicon.ico",
+    "threat_level": "LOW",
+    "threat_score": 25,
+    "attack_type": "RECON_SCANNER_PROBE",
+    "detail": "Probing non-existent sensitive path /favicon.ico",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36 Edg/156.0.0.0"
+  },
+  {
+    "ts": "2026-11-03T03:44:35.058746Z",
+    "ip": "152.57.53.201",
+    "username": "4MW21CS001",
+    "password": "password2026",
+    "threat_level": "CRITICAL",
+    "threat_score": 95,
+    "attack_type": "SIMULATED_BRUTE_FORCE_TRAP",
+    "user_agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Mobile Safari/537.36"
+  },
+  {
+    "ts": "2026-11-03T03:44:38.287465Z",
+    "ip": "152.57.53.201",
+    "username": "4MW21CS001",
+    "password": "password2026",
+    "threat_level": "CRITICAL",
+    "threat_score": 95,
+    "attack_type": "SIMULATED_BRUTE_FORCE_TRAP",
+    "user_agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Mobile Safari/537.36"
+  },
+  {
+    "ts": "2026-11-03T03:46:35.590280Z",
+    "ip": "2409:40f2:3146:3f48:8000::",
+    "path": "/favicon.ico",
+    "threat_level": "LOW",
+    "threat_score": 25,
+    "attack_type": "RECON_SCANNER_PROBE",
+    "detail": "Probing non-existent sensitive path /favicon.ico",
+    "user_agent": "Mozilla/5.0 (Linux; Android 15; I2403) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/123.0.6312.118 Mobile Safari/537.36 VivoBrowser/15.0.2.1"
+  },
+  {
+    "ts": "2026-11-03T04:36:17.347296Z",
+    "ip": "2409:40f2:310b:37de:ad58:260b:bd77:8c7a",
+    "path": "/favicon.ico",
+    "threat_level": "LOW",
+    "threat_score": 25,
+    "attack_type": "RECON_SCANNER_PROBE",
+    "detail": "Probing non-existent sensitive path /favicon.ico",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Antigravity/2.28.2 Chrome/152.0.7977.130 Electron/44.5.1 Safari/537.36"
+  },
+  {
+    "ts": "2026-11-03T04:36:52.168046Z",
+    "ip": "2409:40f2:314f:2303:280b:d275:7f5e:775d",
+    "path": "/favicon.ico",
+    "threat_level": "LOW",
+    "threat_score": 25,
+    "attack_type": "RECON_SCANNER_PROBE",
+    "detail": "Probing non-existent sensitive path /favicon.ico",
+    "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.5 Mobile/15E148 Safari/604.1"
+  },
+  {
+    "ts": "2026-11-03T04:37:03.183534Z",
+    "ip": "2409:40f2:310b:37de:ad58:260b:bd77:8c7a",
+    "username": "4MW21CS001",
+    "password": "password2026",
+    "threat_level": "CRITICAL",
+    "threat_score": 95,
+    "attack_type": "SIMULATED_BRUTE_FORCE_TRAP",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Antigravity/2.28.2 Chrome/152.0.7977.130 Electron/44.5.1 Safari/537.36"
+  },
+  {
+    "ts": "2026-11-03T04:37:11.487167Z",
+    "ip": "2409:40f2:310b:37de:ad58:260b:bd77:8c7a",
+    "path": "/favicon.ico",
+    "threat_level": "CRITICAL",
+    "threat_score": 100,
+    "attack_type": "RECON_SCANNER_PROBE",
+    "detail": "Probing non-existent sensitive path /favicon.ico",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Antigravity/2.28.2 Chrome/152.0.7977.130 Electron/44.5.1 Safari/537.36"
+  },
+  {
+    "ts": "2026-11-03T04:37:19.950383Z",
+    "ip": "2409:40f2:310b:37de:ad58:260b:bd77:8c7a",
+    "path": "/favicon.ico",
+    "threat_level": "CRITICAL",
+    "threat_score": 100,
+    "attack_type": "RECON_SCANNER_PROBE",
+    "detail": "Probing non-existent sensitive path /favicon.ico",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Antigravity/2.28.2 Chrome/152.0.7977.130 Electron/44.5.1 Safari/537.36"
+  },
+  {
+    "ts": "2026-11-03T04:37:21.504902Z",
+    "ip": "2409:40f2:310b:37de:ad58:260b:bd77:8c7a",
+    "username": "4MW21CS001",
+    "password": "password2026",
+    "threat_level": "CRITICAL",
+    "threat_score": 95,
+    "attack_type": "SIMULATED_BRUTE_FORCE_TRAP",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Antigravity/2.28.2 Chrome/152.0.7977.130 Electron/44.5.1 Safari/537.36"
+  },
+  {
+    "ts": "2026-11-03T04:37:24.712534Z",
+    "ip": "2409:40f2:310b:37de:ad58:260b:bd77:8c7a",
+    "username": "4MW21CS001",
+    "password": "password2026",
+    "threat_level": "CRITICAL",
+    "threat_score": 95,
+    "attack_type": "SIMULATED_BRUTE_FORCE_TRAP",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Antigravity/2.28.2 Chrome/152.0.7977.130 Electron/44.5.1 Safari/537.36"
+  },
+  {
+    "ts": "2026-11-03T04:37:24.956169Z",
+    "ip": "2409:40f2:310b:37de:ad58:260b:bd77:8c7a",
+    "username": "4MW21CS001",
+    "password": "password2026",
+    "threat_level": "CRITICAL",
+    "threat_score": 95,
+    "attack_type": "SIMULATED_BRUTE_FORCE_TRAP",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Antigravity/2.28.2 Chrome/152.0.7977.130 Electron/44.5.1 Safari/537.36"
+  },
+  {
+    "ts": "2026-11-03T04:37:27.091796Z",
+    "ip": "2409:40f2:310b:37de:ad58:260b:bd77:8c7a",
+    "username": "4MW21CS001",
+    "password": "password2026",
+    "threat_level": "CRITICAL",
+    "threat_score": 95,
+    "attack_type": "SIMULATED_BRUTE_FORCE_TRAP",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Antigravity/2.28.2 Chrome/152.0.7977.130 Electron/44.5.1 Safari/537.36"
+  },
+  {
+    "ts": "2026-11-03T04:37:29.204691Z",
+    "ip": "2409:40f2:310b:37de:ad58:260b:bd77:8c7a",
+    "path": "/favicon.ico",
+    "threat_level": "CRITICAL",
+    "threat_score": 100,
+    "attack_type": "RECON_SCANNER_PROBE",
+    "detail": "Probing non-existent sensitive path /favicon.ico",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Antigravity/2.28.2 Chrome/152.0.7977.130 Electron/44.5.1 Safari/537.36"
+  },
+  {
+    "ts": "2026-11-03T04:37:32.357024Z",
+    "ip": "2409:40f2:310b:37de:ad58:260b:bd77:8c7a",
+    "path": "/favicon.ico",
+    "threat_level": "CRITICAL",
+    "threat_score": 100,
+    "attack_type": "RECON_SCANNER_PROBE",
+    "detail": "Probing non-existent sensitive path /favicon.ico",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Antigravity/2.28.2 Chrome/152.0.7977.130 Electron/44.5.1 Safari/537.36"
+  },
+  {
+    "ts": "2026-11-03T04:37:35.530305Z",
+    "ip": "2409:40f2:310b:37de:ad58:260b:bd77:8c7a",
+    "path": "/favicon.ico",
+    "threat_level": "CRITICAL",
+    "threat_score": 100,
+    "attack_type": "RECON_SCANNER_PROBE",
+    "detail": "Probing non-existent sensitive path /favicon.ico",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Antigravity/2.28.2 Chrome/152.0.7977.130 Electron/44.5.1 Safari/537.36"
+  },
+  {
+    "ts": "2026-11-03T04:37:44.763975Z",
+    "ip": "2409:40f2:310b:37de:ad58:260b:bd77:8c7a",
+    "path": "/favicon.ico",
+    "threat_level": "CRITICAL",
+    "threat_score": 100,
+    "attack_type": "RECON_SCANNER_PROBE",
+    "detail": "Probing non-existent sensitive path /favicon.ico",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Antigravity/2.28.2 Chrome/152.0.7977.130 Electron/44.5.1 Safari/537.36"
+  },
+  {
+    "ts": "2026-11-03T04:37:57.196978Z",
+    "ip": "2409:40f2:310b:37de:ad58:260b:bd77:8c7a",
+    "path": "/favicon.ico",
+    "threat_level": "CRITICAL",
+    "threat_score": 100,
+    "attack_type": "RECON_SCANNER_PROBE",
+    "detail": "Probing non-existent sensitive path /favicon.ico",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Antigravity/2.28.2 Chrome/152.0.7977.130 Electron/44.5.1 Safari/537.36"
+  },
+  {
+    "ts": "2026-11-03T04:38:06.557560Z",
+    "ip": "2409:40f2:310b:37de:ad58:260b:bd77:8c7a",
+    "username": "4MW21CS001",
+    "password": "password2026",
+    "threat_level": "CRITICAL",
+    "threat_score": 95,
+    "attack_type": "SIMULATED_BRUTE_FORCE_TRAP",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Antigravity/2.28.2 Chrome/152.0.7977.130 Electron/44.5.1 Safari/537.36"
+  },
+  {
+    "ts": "2026-11-03T04:38:08.323193Z",
+    "ip": "2409:40f2:310b:37de:ad58:260b:bd77:8c7a",
+    "username": "4MW21CS001",
+    "password": "password2026",
+    "threat_level": "CRITICAL",
+    "threat_score": 95,
+    "attack_type": "SIMULATED_BRUTE_FORCE_TRAP",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Antigravity/2.28.2 Chrome/152.0.7977.130 Electron/44.5.1 Safari/537.36"
+  },
+  {
+    "ts": "2026-11-03T04:38:10.124397Z",
+    "ip": "2409:40f2:310b:37de:ad58:260b:bd77:8c7a",
+    "username": "4MW21CS001",
+    "password": "password2026",
+    "threat_level": "CRITICAL",
+    "threat_score": 95,
+    "attack_type": "SIMULATED_BRUTE_FORCE_TRAP",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Antigravity/2.28.2 Chrome/152.0.7977.130 Electron/44.5.1 Safari/537.36"
+  },
+  {
+    "ts": "2026-11-03T04:38:11.100868Z",
+    "ip": "2409:40f2:310b:37de:ad58:260b:bd77:8c7a",
+    "username": "4MW21CS001",
+    "password": "password2026",
+    "threat_level": "CRITICAL",
+    "threat_score": 95,
+    "attack_type": "SIMULATED_BRUTE_FORCE_TRAP",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Antigravity/2.28.2 Chrome/152.0.7977.130 Electron/44.5.1 Safari/537.36"
+  },
+  {
+    "ts": "2026-11-03T04:38:12.476073Z",
+    "ip": "2409:40f2:310b:37de:ad58:260b:bd77:8c7a",
+    "username": "4MW21CS001",
+    "password": "password2026",
+    "threat_level": "CRITICAL",
+    "threat_score": 95,
+    "attack_type": "SIMULATED_BRUTE_FORCE_TRAP",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Antigravity/2.28.2 Chrome/152.0.7977.130 Electron/44.5.1 Safari/537.36"
+  },
+  {
+    "ts": "2026-11-03T04:38:14.618773Z",
+    "ip": "2409:40f2:310b:37de:ad58:260b:bd77:8c7a",
+    "path": "/favicon.ico",
+    "threat_level": "CRITICAL",
+    "threat_score": 100,
+    "attack_type": "RECON_SCANNER_PROBE",
+    "detail": "Probing non-existent sensitive path /favicon.ico",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Antigravity/2.28.2 Chrome/152.0.7977.130 Electron/44.5.1 Safari/537.36"
+  },
+  {
+    "ts": "2026-11-03T04:38:18.352978Z",
+    "ip": "2409:40f2:310b:37de:ad58:260b:bd77:8c7a",
+    "path": "/favicon.ico",
+    "threat_level": "CRITICAL",
+    "threat_score": 100,
+    "attack_type": "RECON_SCANNER_PROBE",
+    "detail": "Probing non-existent sensitive path /favicon.ico",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Antigravity/2.28.2 Chrome/152.0.7977.130 Electron/44.5.1 Safari/537.36"
+  },
+  {
+    "ts": "2026-11-03T04:38:40.777900Z",
+    "ip": "2409:40f2:310b:37de:ad58:260b:bd77:8c7a",
+    "path": "/favicon.ico",
+    "threat_level": "CRITICAL",
+    "threat_score": 100,
+    "attack_type": "RECON_SCANNER_PROBE",
+    "detail": "Probing non-existent sensitive path /favicon.ico",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Antigravity/2.28.2 Chrome/152.0.7977.130 Electron/44.5.1 Safari/537.36"
+  },
+  {
+    "ts": "2026-11-03T04:39:16.714524Z",
+    "ip": "2409:40f2:314f:2303:280b:d275:7f5e:775d",
+    "path": "/files/download/VTU_Confidential_End_Sem_Question_Paper_Dec2025.xlsx",
+    "method": "GET",
+    "threat_level": "MEDIUM",
+    "threat_score": 40,
+    "attack_type": "SUSPICIOUS_PATH",
+    "detail": "Targeting sensitive endpoint /vtu",
+    "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.5 Mobile/15E148 Safari/604.1"
+  },
+  {
+    "ts": "2026-11-03T04:39:17.617937Z",
+    "ip": "2409:40f2:314f:2303:280b:d275:7f5e:775d",
+    "username": "N/A (Exfiltration Probe)",
+    "threat_level": "CRITICAL",
+    "threat_score": 70,
+    "attack_type": "HONEYTOKEN_CANARY_TRIPPED",
+    "detail": "Decoy file 'VTU_Confidential_End_Sem_Question_Paper_Dec2025.xlsx' was exfiltrated by client.",
+    "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.5 Mobile/15E148 Safari/604.1"
+  },
+  {
+    "ts": "2026-11-03T06:12:49.795040Z",
+    "ip": "2409:40f2:310b:37de:ad58:260b:bd77:8c7a",
+    "path": "/favicon.ico",
+    "threat_level": "CRITICAL",
+    "threat_score": 100,
+    "attack_type": "RECON_SCANNER_PROBE",
+    "detail": "Probing non-existent sensitive path /favicon.ico",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Antigravity/2.28.2 Chrome/152.0.7977.130 Electron/44.5.1 Safari/537.36"
+  },
+  {
+    "ts": "2026-11-03T06:13:26.169284Z",
+    "ip": "2409:40f2:3040:6e00:8000::",
+    "path": "/favicon.ico",
+    "threat_level": "LOW",
+    "threat_score": 25,
+    "attack_type": "RECON_SCANNER_PROBE",
+    "detail": "Probing non-existent sensitive path /favicon.ico",
+    "user_agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36"
+  },
+  {
+    "ts": "2026-11-03T06:13:28.011769Z",
+    "ip": "2409:408c:8d00:11e1:65cb:70ee:1afd:7576",
+    "path": "/favicon.ico",
+    "threat_level": "LOW",
+    "threat_score": 25,
+    "attack_type": "RECON_SCANNER_PROBE",
+    "detail": "Probing non-existent sensitive path /favicon.ico",
+    "user_agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Mobile Safari/537.36"
+  },
+  {
+    "ts": "2026-11-03T06:15:26.994372Z",
+    "ip": "127.0.0.1",
+    "path": "/favicon.ico",
+    "threat_level": "LOW",
+    "threat_score": 25,
+    "attack_type": "RECON_SCANNER_PROBE",
+    "detail": "Probing non-existent sensitive path /favicon.ico",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Antigravity/2.28.2 Chrome/152.0.7977.130 Electron/44.5.1 Safari/537.36"
+  },
+  {
+    "ts": "2026-11-03T06:17:08.106344Z",
+    "ip": "127.0.0.1",
+    "username": "4MW21CS001",
+    "password": "password2026",
+    "threat_level": "CRITICAL",
+    "threat_score": 95,
+    "attack_type": "SIMULATED_BRUTE_FORCE_TRAP",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Antigravity/2.28.2 Chrome/152.0.7977.130 Electron/44.5.1 Safari/537.36"
+  },
+  {
+    "ts": "2026-11-03T06:17:11.325186Z",
+    "ip": "127.0.0.1",
+    "username": "4MW21CS001",
+    "password": "password2026",
+    "threat_level": "CRITICAL",
+    "threat_score": 95,
+    "attack_type": "SIMULATED_BRUTE_FORCE_TRAP",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Antigravity/2.28.2 Chrome/152.0.7977.130 Electron/44.5.1 Safari/537.36"
+  },
+  {
+    "ts": "2026-11-03T06:17:12.210078Z",
+    "ip": "127.0.0.1",
+    "username": "4MW21CS001",
+    "password": "password2026",
+    "threat_level": "CRITICAL",
+    "threat_score": 95,
+    "attack_type": "SIMULATED_BRUTE_FORCE_TRAP",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Antigravity/2.28.2 Chrome/152.0.7977.130 Electron/44.5.1 Safari/537.36"
+  },
+  {
+    "ts": "2026-11-03T06:17:12.813340Z",
+    "ip": "127.0.0.1",
+    "username": "4MW21CS001",
+    "password": "password2026",
+    "threat_level": "CRITICAL",
+    "threat_score": 95,
+    "attack_type": "SIMULATED_BRUTE_FORCE_TRAP",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Antigravity/2.28.2 Chrome/152.0.7977.130 Electron/44.5.1 Safari/537.36"
+  },
+  {
+    "ts": "2026-11-03T06:17:15.584252Z",
+    "ip": "127.0.0.1",
+    "username": "4MW21CS001",
+    "password": "password2026",
+    "threat_level": "CRITICAL",
+    "threat_score": 95,
+    "attack_type": "SIMULATED_BRUTE_FORCE_TRAP",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Antigravity/2.28.2 Chrome/152.0.7977.130 Electron/44.5.1 Safari/537.36"
+  },
+  {
+    "ts": "2026-11-03T06:17:16.008260Z",
+    "ip": "127.0.0.1",
+    "path": "/favicon.ico",
+    "threat_level": "CRITICAL",
+    "threat_score": 100,
+    "attack_type": "RECON_SCANNER_PROBE",
+    "detail": "Probing non-existent sensitive path /favicon.ico",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Antigravity/2.28.2 Chrome/152.0.7977.130 Electron/44.5.1 Safari/537.36"
+  },
+  {
+    "ts": "2026-11-03T06:17:16.007746Z",
+    "ip": "127.0.0.1",
+    "username": "4MW21CS001",
+    "password": "password2026",
+    "threat_level": "CRITICAL",
+    "threat_score": 95,
+    "attack_type": "SIMULATED_BRUTE_FORCE_TRAP",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Antigravity/2.28.2 Chrome/152.0.7977.130 Electron/44.5.1 Safari/537.36"
+  },
+  {
+    "ts": "2026-11-03T06:17:17.470445Z",
+    "ip": "127.0.0.1",
+    "username": "4MW21CS001",
+    "password": "password2026",
+    "threat_level": "CRITICAL",
+    "threat_score": 95,
+    "attack_type": "SIMULATED_BRUTE_FORCE_TRAP",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Antigravity/2.28.2 Chrome/152.0.7977.130 Electron/44.5.1 Safari/537.36"
+  },
+  {
+    "ts": "2026-11-03T06:17:19.355292Z",
+    "ip": "127.0.0.1",
+    "path": "/favicon.ico",
+    "threat_level": "CRITICAL",
+    "threat_score": 100,
+    "attack_type": "RECON_SCANNER_PROBE",
+    "detail": "Probing non-existent sensitive path /favicon.ico",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Antigravity/2.28.2 Chrome/152.0.7977.130 Electron/44.5.1 Safari/537.36"
+  },
+  {
+    "ts": "2026-11-03T06:17:22.729014Z",
+    "ip": "127.0.0.1",
+    "path": "/favicon.ico",
+    "threat_level": "CRITICAL",
+    "threat_score": 100,
+    "attack_type": "RECON_SCANNER_PROBE",
+    "detail": "Probing non-existent sensitive path /favicon.ico",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Antigravity/2.28.2 Chrome/152.0.7977.130 Electron/44.5.1 Safari/537.36"
+  },
+  {
+    "ts": "2026-11-03T06:17:26.087618Z",
+    "ip": "127.0.0.1",
+    "path": "/favicon.ico",
+    "threat_level": "CRITICAL",
+    "threat_score": 100,
+    "attack_type": "RECON_SCANNER_PROBE",
+    "detail": "Probing non-existent sensitive path /favicon.ico",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Antigravity/2.28.2 Chrome/152.0.7977.130 Electron/44.5.1 Safari/537.36"
+  },
+  {
+    "ts": "2026-11-03T06:17:29.463937Z",
+    "ip": "127.0.0.1",
+    "path": "/favicon.ico",
+    "threat_level": "CRITICAL",
+    "threat_score": 100,
+    "attack_type": "RECON_SCANNER_PROBE",
+    "detail": "Probing non-existent sensitive path /favicon.ico",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Antigravity/2.28.2 Chrome/152.0.7977.130 Electron/44.5.1 Safari/537.36"
+  },
+  {
+    "ts": "2026-11-03T06:19:05.920284Z",
+    "ip": "127.0.0.1",
+    "path": "/favicon.ico",
+    "threat_level": "CRITICAL",
+    "threat_score": 100,
+    "attack_type": "RECON_SCANNER_PROBE",
+    "detail": "Probing non-existent sensitive path /favicon.ico",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Antigravity/2.28.2 Chrome/152.0.7977.130 Electron/44.5.1 Safari/537.36"
+  },
+  {
+    "ts": "2026-11-03T06:20:39.653723Z",
+    "ip": "127.0.0.1",
+    "path": "/favicon.ico",
+    "threat_level": "CRITICAL",
+    "threat_score": 100,
+    "attack_type": "RECON_SCANNER_PROBE",
+    "detail": "Probing non-existent sensitive path /favicon.ico",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Antigravity/2.28.2 Chrome/152.0.7977.130 Electron/44.5.1 Safari/537.36"
+  },
+  {
+    "ts": "2026-11-03T06:22:23.044642Z",
+    "ip": "2409:40f2:3040:6e00:8000::",
+    "username": "4MW21CS001",
+    "password": "password2026",
+    "threat_level": "CRITICAL",
+    "threat_score": 95,
+    "attack_type": "SIMULATED_BRUTE_FORCE_TRAP",
+    "user_agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36"
+  },
+  {
+    "ts": "2026-11-03T06:26:06.326815Z",
+    "ip": "2409:408c:8d00:11e1:65cb:70ee:1afd:7576",
+    "username": "4MW21CS001",
+    "password": "password2026",
+    "threat_level": "CRITICAL",
+    "threat_score": 95,
+    "attack_type": "SIMULATED_BRUTE_FORCE_TRAP",
+    "user_agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Mobile Safari/537.36"
+  },
+  {
+    "ts": "2026-11-03T06:26:10.472301Z",
+    "ip": "2409:408c:8d00:11e1:65cb:70ee:1afd:7576",
+    "username": "4MW21CS001",
+    "password": "password2026",
+    "threat_level": "CRITICAL",
+    "threat_score": 95,
+    "attack_type": "SIMULATED_BRUTE_FORCE_TRAP",
+    "user_agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Mobile Safari/537.36"
+  }
+]

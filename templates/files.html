@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Examination Vault & Academic Honeytokens - SMVITM Bantakal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/public/css/style.css">
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col selection:bg-amber-500 selection:text-slate-950">
+
+  <!-- Top Navigation Bar -->
+  <nav class="border-b border-slate-800 bg-slate-900/95 backdrop-blur sticky top-0 z-50 px-6 py-3.5 flex items-center justify-between">
+    <div class="flex items-center space-x-8">
+      <div class="flex items-center space-x-3">
+        <a href="/dashboard" class="h-10 w-10 rounded-xl bg-amber-500 flex items-center justify-center font-bold text-slate-950 shadow-lg shadow-amber-500/20 text-lg">
+          <i class="fa-solid fa-graduation-cap"></i>
+        </a>
+        <div>
+          <span class="font-bold text-base tracking-tight text-white">SMVITM Examination Vault</span>
+          <span class="text-[11px] block text-amber-400 font-mono">Confidential VTU Papers & IA Records</span>
+        </div>
+      </div>
+
+      <div class="hidden md:flex items-center space-x-1">
+        <a href="/dashboard" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800 transition flex items-center space-x-2">
+          <i class="fa-solid fa-chart-pie text-xs"></i>
+          <span>Academic Dashboard</span>
+        </a>
+        <a href="/employees" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800 transition flex items-center space-x-2">
+          <i class="fa-solid fa-chalkboard-user text-xs"></i>
+          <span>Faculty & Staff</span>
+        </a>
+        <a href="/payments" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800 transition flex items-center space-x-2">
+          <i class="fa-solid fa-receipt text-xs"></i>
+          <span>Student Fees & Accounts</span>
+        </a>
+        <a href="/files" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-amber-500/20 text-amber-300 border border-amber-500/30 flex items-center space-x-2">
+          <i class="fa-solid fa-vault text-xs"></i>
+          <span>Exam Papers & IA Marks</span>
+        </a>
+        <a href="/terminal" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-cyan-400 hover:bg-cyan-500/10 transition flex items-center space-x-2 border border-cyan-500/20">
+          <i class="fa-solid fa-terminal text-xs"></i>
+          <span>Campus Shell</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="flex items-center space-x-4">
+      <a href="/admin.html" class="text-xs font-mono text-cyan-400 bg-cyan-950/40 hover:bg-cyan-900/50 border border-cyan-800/60 px-3 py-1.5 rounded-lg transition flex items-center space-x-1.5">
+        <i class="fa-solid fa-shield-halved"></i>
+        <span>Campus SOC</span>
+      </a>
+      <a href="/" class="text-slate-400 hover:text-rose-400 text-sm ml-2" title="Sign Out">
+        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Main Body -->
+  <main class="flex-grow max-w-7xl w-full mx-auto px-6 py-8">
+
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+      <div>
+        <h1 class="text-2xl font-bold tracking-tight text-white flex items-center space-x-3">
+          <span>Confidential VTU Examination & Marks Vault</span>
+          <span class="text-xs font-mono bg-purple-500/20 text-purple-300 px-2.5 py-1 rounded-md border border-purple-500/30">
+            Encrypted Storage
+          </span>
+        </h1>
+        <p class="text-xs text-slate-400 mt-1">
+          Confidential question papers, final internal assessment marks, ERP database dumps, and faculty network configurations.
+        </p>
+      </div>
+
+      <div class="p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center space-x-2 text-xs text-amber-300">
+        <i class="fa-solid fa-bell"></i>
+        <span>Exam Cell Tripwire Active: All downloads trigger immediate forensic logging.</span>
+      </div>
+    </div>
+
+    <!-- Decoy Files Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+      {% for canary in canaries %}
+      <div class="bg-slate-900/80 border border-slate-800 hover:border-slate-700 rounded-2xl p-6 transition flex flex-col justify-between">
+        <div>
+          <div class="flex items-start justify-between mb-4">
+            <div class="flex items-center space-x-3">
+              <div class="w-12 h-12 rounded-xl bg-slate-950 border border-slate-800 flex items-center justify-center text-xl">
+                {% if 'Question' in canary.filename or 'vtu' in canary.filename|lower %}
+                  <i class="fa-solid fa-file-excel text-rose-400"></i>
+                {% elif 'marks' in canary.filename|lower or 'ia' in canary.filename|lower %}
+                  <i class="fa-solid fa-file-lines text-amber-400"></i>
+                {% elif 'sql' in canary.filename %}
+                  <i class="fa-solid fa-database text-cyan-400"></i>
+                {% elif 'ovpn' in canary.filename %}
+                  <i class="fa-solid fa-shield-halved text-emerald-400"></i>
+                {% else %}
+                  <i class="fa-solid fa-file-code text-blue-400"></i>
+                {% endif %}
+              </div>
+              <div>
+                <h3 class="text-xs font-bold text-white tracking-wide font-mono break-all">{{ canary.filename }}</h3>
+                <span class="text-[11px] text-slate-400 block mt-0.5">{{ canary.type }}</span>
+              </div>
+            </div>
+            
+            <span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-rose-950 text-rose-300 border border-rose-800 uppercase flex-shrink-0 ml-2">
+              CONFIDENTIAL
+            </span>
+          </div>
+
+          <p class="text-xs text-slate-400 mb-4 leading-relaxed">
+            {{ canary.description }}
+          </p>
+        </div>
+
+        <div class="pt-4 border-t border-slate-800 flex items-center justify-between">
+          <div class="text-[11px] font-mono text-slate-500">
+            Downloads: <span class="text-white font-bold">{{ canary.downloads }}</span>
+            {% if canary.last_accessed %}
+              &bull; Last: <span class="text-amber-400">{{ canary.last_accessed[:16] }}</span>
+            {% endif %}
+          </div>
+
+          <a
+            href="/files/download/{{ canary.filename }}"
+            class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-4 py-2 rounded-xl text-xs flex items-center space-x-2 transition shadow-lg shadow-amber-500/20 active:scale-95"
+            download
+          >
+            <i class="fa-solid fa-cloud-arrow-down"></i>
+            <span>Download Decoy Asset</span>
+          </a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- Canary Decoy Explanation Banner -->
+    <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 text-xs text-slate-400 space-y-2">
+      <div class="font-bold text-slate-200 text-sm flex items-center space-x-2">
+        <i class="fa-solid fa-lightbulb text-amber-400"></i>
+        <span>How Academic Honeytokens Protect SMVITM Systems</span>
+      </div>
+      <p class="leading-relaxed">
+        Students or external adversaries probing the college network often search for leaked examination question papers or marks databases. In MorphPot, these files serve as <strong>honeytokens</strong>. When downloaded, the attacker receives synthetic question paper drafts containing cryptographic beacon markers. The download instantly logs the intruder's IP address, device headers, and timestamp into <code class="text-amber-400">data/logs.json</code>, escalating their threat score to CRITICAL.
+      </p>
+    </div>
+
+  </main>
+
+  <footer class="border-t border-slate-800 bg-slate-900/80 px-6 py-4 text-center text-xs text-slate-500 font-mono">
+    Shri Madhwa Vadiraja Institute of Technology & Management &bull; Examination Cell Honeytoken System.
+  </footer>
+
+</body>
+</html>

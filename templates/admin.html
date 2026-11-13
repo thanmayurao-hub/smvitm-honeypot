@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SMVITM - Cyber Defense & SOC Threat Intelligence Center</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/public/css/style.css">
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col font-sans selection:bg-amber-500 selection:text-slate-950">
+
+  <!-- Admin Header -->
+  <header class="border-b border-slate-800 bg-slate-900/90 backdrop-blur sticky top-0 z-50 px-6 py-3.5 flex items-center justify-between">
+    <div class="flex items-center space-x-3">
+      <div class="h-10 w-10 rounded-xl bg-gradient-to-tr from-rose-600 to-amber-500 flex items-center justify-center font-bold text-slate-950 shadow-lg shadow-rose-600/30 text-lg">
+        <i class="fa-solid fa-shield-virus"></i>
+      </div>
+      <div>
+        <div class="flex items-center space-x-2">
+          <span class="font-bold text-base tracking-tight text-white">SMVITM Campus SOC Command Center</span>
+          <span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-rose-950 text-rose-300 border border-rose-800">
+            DEFENDER CONSOLE
+          </span>
+        </div>
+        <span class="text-[11px] block text-slate-400 font-mono">Shri Madhwa Vadiraja Institute of Technology & Management &bull; Bantakal</span>
+      </div>
+    </div>
+
+    <!-- Admin Token & Global Controls -->
+    <div class="flex items-center space-x-3">
+      <div class="flex items-center space-x-2 bg-slate-950 border border-slate-800 px-3 py-1.5 rounded-xl">
+        <i class="fa-solid fa-key text-xs text-amber-400"></i>
+        <span class="text-xs text-slate-400 font-mono">SOC Token:</span>
+        <input
+          id="adminToken"
+          type="password"
+          value="{{ admin_token }}"
+          placeholder="Enter admin token..."
+          class="bg-transparent text-xs text-emerald-400 font-mono outline-none w-28 sm:w-36"
+        >
+        <button onclick="toggleTokenVisibility()" class="text-slate-500 hover:text-slate-300 text-xs">
+          <i id="tokenEye" class="fa-solid fa-eye"></i>
+        </button>
+      </div>
+
+      <button onclick="refreshAllData()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-3.5 py-1.5 rounded-xl text-xs flex items-center space-x-1.5 transition shadow-lg shadow-amber-500/20">
+        <i class="fa-solid fa-rotate text-xs"></i>
+        <span>Refresh</span>
+      </button>
+
+      <a href="/" class="bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 px-3 py-1.5 rounded-xl text-xs transition flex items-center space-x-1">
+        <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+        <span>Campus Portal</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="flex-grow max-w-7xl w-full mx-auto px-6 py-6 space-y-6">
+
+    <!-- KPI Metrics Row -->
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+      
+      <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-4">
+        <div class="text-[11px] font-mono text-slate-400 uppercase">Total Intrusions</div>
+        <div class="text-2xl font-bold text-white mt-1" id="statTotalAttacks">0</div>
+        <div class="text-[10px] text-slate-500 mt-1">Logged campus probes</div>
+      </div>
+
+      <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-4">
+        <div class="text-[11px] font-mono text-slate-400 uppercase">Trapped Sessions</div>
+        <div class="text-2xl font-bold text-rose-400 mt-1" id="statTrapped">0</div>
+        <div class="text-[10px] text-rose-500/80 mt-1">Brute-force caught</div>
+      </div>
+
+      <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-4">
+        <div class="text-[11px] font-mono text-slate-400 uppercase">Unique Attacker IPs</div>
+        <div class="text-2xl font-bold text-amber-400 mt-1" id="statUniqueIps">0</div>
+        <div class="text-[10px] text-slate-500 mt-1">Hostile sources</div>
+      </div>
+
+      <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-4">
+        <div class="text-[11px] font-mono text-slate-400 uppercase">Exam Paper Hits</div>
+        <div class="text-2xl font-bold text-cyan-400 mt-1" id="statCanaries">0</div>
+        <div class="text-[10px] text-cyan-500/80 mt-1">Canary file exfiltrations</div>
+      </div>
+
+      <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-4">
+        <div class="text-[11px] font-mono text-slate-400 uppercase">Blocked IPs</div>
+        <div class="text-2xl font-bold text-rose-500 mt-1" id="statBlocked">0</div>
+        <div class="text-[10px] text-slate-500 mt-1">Firewall DROP rules</div>
+      </div>
+
+      <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-4">
+        <div class="text-[11px] font-mono text-slate-400 uppercase">Adaptive Tarpit</div>
+        <div class="text-sm font-bold text-emerald-400 mt-2 flex items-center space-x-1" id="statTarpit">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span>ACTIVE (3.0s)</span>
+        </div>
+        <div class="text-[10px] text-slate-500 mt-1">Sloth throttling</div>
+      </div>
+
+    </div>
+
+    <!-- Navigation Tabs -->
+    <div class="flex border-b border-slate-800 space-x-2 text-xs font-medium overflow-x-auto">
+      <button onclick="switchTab('logs')" id="tabBtn-logs" class="py-2.5 px-4 rounded-t-lg border-b-2 border-amber-500 text-amber-400 bg-slate-900/50 flex items-center space-x-2">
+        <i class="fa-solid fa-list-check"></i>
+        <span>Live Attack Feed</span>
+      </button>
+      <button onclick="switchTab('trapped')" id="tabBtn-trapped" class="py-2.5 px-4 rounded-t-lg border-b-2 border-transparent text-slate-400 hover:text-white flex items-center space-x-2">
+        <i class="fa-solid fa-spider"></i>
+        <span>Trapped Attackers</span>
+      </button>
+      <button onclick="switchTab('canaries')" id="tabBtn-canaries" class="py-2.5 px-4 rounded-t-lg border-b-2 border-transparent text-slate-400 hover:text-white flex items-center space-x-2">
+        <i class="fa-solid fa-radiation text-amber-400"></i>
+        <span>VTU Exam Honeytokens</span>
+      </button>
+      <button onclick="switchTab('blocklist')" id="tabBtn-blocklist" class="py-2.5 px-4 rounded-t-lg border-b-2 border-transparent text-slate-400 hover:text-white flex items-center space-x-2">
+        <i class="fa-solid fa-ban text-rose-400"></i>
+        <span>Campus Firewall Blocklist</span>
+      </button>
+      <button onclick="switchTab('adaptive')" id="tabBtn-adaptive" class="py-2.5 px-4 rounded-t-lg border-b-2 border-transparent text-slate-400 hover:text-white flex items-center space-x-2">
+        <i class="fa-solid fa-sliders text-cyan-400"></i>
+        <span>Adaptive Defense & Attack Simulator</span>
+      </button>
+    </div>
+
+    <!-- TAB 1: Live Attack Feed -->
+    <section id="tab-logs" class="space-y-4">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 bg-slate-900/40 p-3 rounded-xl border border-slate-800/80">
+        <div class="flex items-center space-x-3 w-full sm:w-auto">
+          <div class="relative flex-1 sm:w-64">
+            <input
+              id="logFilterInput"
+              type="text"
+              placeholder="Filter by IP, USN/User, or attack..."
+              onkeyup="renderLogsTable()"
+              class="w-full bg-slate-950 border border-slate-800 rounded-lg pl-8 pr-3 py-1.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-500"
+            >
+            <i class="fa-solid fa-magnifying-glass absolute left-2.5 top-2.5 text-slate-500 text-xs"></i>
+          </div>
+          <select id="threatLevelSelect" onchange="renderLogsTable()" class="bg-slate-950 border border-slate-800 rounded-lg px-2.5 py-1.5 text-xs text-slate-300 focus:outline-none">
+            <option value="ALL">All Threat Levels</option>
+            <option value="CRITICAL">CRITICAL</option>
+            <option value="HIGH">HIGH</option>
+            <option value="MEDIUM">MEDIUM</option>
+            <option value="LOW">LOW</option>
+          </select>
+        </div>
+
+        <div class="flex items-center space-x-2 text-xs text-slate-400 font-mono">
+          <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+          <span>Live SOC Polling (3s)</span>
+        </div>
+      </div>
+
+      <!-- Logs Table -->
+      <div class="bg-slate-900/60 border border-slate-800 rounded-2xl overflow-hidden shadow-2xl">
+        <div class="overflow-x-auto max-h-[550px]">
+          <table class="w-full text-left border-collapse" id="logsTable">
+            <thead class="sticky top-0 bg-slate-900 border-b border-slate-800 text-[11px] font-mono text-slate-400 uppercase tracking-wider z-10">
+              <tr>
+                <th class="py-3 px-4">Timestamp (UTC)</th>
+                <th class="py-3 px-4">Attacker IP</th>
+                <th class="py-3 px-4">Attack Vector</th>
+                <th class="py-3 px-4">Target USN / Path</th>
+                <th class="py-3 px-4">Threat Level</th>
+                <th class="py-3 px-4">Client User-Agent</th>
+                <th class="py-3 px-4 text-right">Defense Action</th>
+              </tr>
+            </thead>
+            <tbody id="logsTableBody" class="divide-y divide-slate-800/80 text-xs font-mono">
+              <tr>
+                <td colspan="7" class="py-8 text-center text-slate-500">Loading campus forensic logs...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: Trapped Attackers -->
+    <section id="tab-trapped" class="hidden space-y-4">
+      <div class="bg-slate-900/40 p-4 rounded-xl border border-slate-800 flex items-center justify-between">
+        <div>
+          <h3 class="text-sm font-bold text-white flex items-center space-x-2">
+            <i class="fa-solid fa-spider text-rose-400"></i>
+            <span>Brute-Force & Credential Stuffing Trap Sessions</span>
+          </h3>
+          <p class="text-xs text-slate-400 mt-0.5">
+            Sessions captured by the 3-step password deviation algorithm and diverted into the deceptive academic workspace.
+          </p>
+        </div>
+      </div>
+
+      <div class="bg-slate-900/60 border border-slate-800 rounded-2xl overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead class="bg-slate-900 border-b border-slate-800 text-[11px] font-mono text-slate-400 uppercase tracking-wider">
+              <tr>
+                <th class="py-3 px-4">Trap Timestamp</th>
+                <th class="py-3 px-4">Attacker IP</th>
+                <th class="py-3 px-4">Targeted USN / Faculty</th>
+                <th class="py-3 px-4">Password Trail Attempted</th>
+                <th class="py-3 px-4">Threat Score</th>
+                <th class="py-3 px-4">Mitigation Status</th>
+                <th class="py-3 px-4 text-right">Action</th>
+              </tr>
+            </thead>
+            <tbody id="trappedTableBody" class="divide-y divide-slate-800/80 text-xs font-mono">
+              <tr>
+                <td colspan="7" class="py-8 text-center text-slate-500">No trapped sessions yet. Run an attack to see live results!</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: Honeytoken Triplines -->
+    <section id="tab-canaries" class="hidden space-y-4">
+      <div class="bg-slate-900/40 p-4 rounded-xl border border-slate-800">
+        <h3 class="text-sm font-bold text-white flex items-center space-x-2">
+          <i class="fa-solid fa-radiation text-amber-400"></i>
+          <span>VTU Examination & IA Marks Honeytokens</span>
+        </h3>
+        <p class="text-xs text-slate-400 mt-0.5">
+          These enticing academic files contain canary beacons. When an attacker attempts to download them, high-fidelity alarms are raised in the SOC.
+        </p>
+      </div>
+
+      <div id="canaryCardsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- Injected dynamically -->
+      </div>
+    </section>
+
+    <!-- TAB 4: Firewall Blocklist -->
+    <section id="tab-blocklist" class="hidden space-y-4">
+      <div class="bg-slate-900/40 p-4 rounded-xl border border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div>
+          <h3 class="text-sm font-bold text-white flex items-center space-x-2">
+            <i class="fa-solid fa-ban text-rose-400"></i>
+            <span>SMVITM Campus Firewall Blocklist</span>
+          </h3>
+          <p class="text-xs text-slate-400 mt-0.5">Blocked IPs receive immediate 403 Forbidden firewall resets on all entry points.</p>
+        </div>
+
+        <div class="flex items-center space-x-2 w-full sm:w-auto">
+          <input
+            id="blockIpInput"
+            type="text"
+            placeholder="e.g. 192.168.1.105"
+            class="bg-slate-950 border border-slate-800 rounded-lg px-3 py-1.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-rose-500"
+          >
+          <button onclick="addIpToBlocklist()" class="bg-rose-600 hover:bg-rose-500 text-white font-bold px-3.5 py-1.5 rounded-lg text-xs transition">
+            Block IP
+          </button>
+        </div>
+      </div>
+
+      <div class="bg-slate-900/60 border border-slate-800 rounded-2xl overflow-hidden">
+        <table class="w-full text-left border-collapse">
+          <thead class="bg-slate-900 border-b border-slate-800 text-[11px] font-mono text-slate-400 uppercase tracking-wider">
+            <tr>
+              <th class="py-3 px-4">Blocked IP Address</th>
+              <th class="py-3 px-4">Rule Enforcement</th>
+              <th class="py-3 px-4 text-right">Action</th>
+            </tr>
+          </thead>
+          <tbody id="blocklistTableBody" class="divide-y divide-slate-800/80 text-xs font-mono">
+            <tr>
+              <td colspan="3" class="py-8 text-center text-slate-500">Blocklist is currently empty.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- TAB 5: Adaptive Controls & Attack Simulator -->
+    <section id="tab-adaptive" class="hidden space-y-6">
+      
+      <!-- Adaptive Controls Card -->
+      <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 space-y-6">
+        <div>
+          <h3 class="text-base font-bold text-white flex items-center space-x-2">
+            <i class="fa-solid fa-sliders text-cyan-400"></i>
+            <span>Adaptive Engine & Deception Persona Parameters</span>
+          </h3>
+          <p class="text-xs text-slate-400 mt-1">Configure tarpit delays, threshold triggers, and server fingerprint morphing.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-slate-950 border border-slate-800 rounded-xl p-4">
+            <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Tarpit Sloth Throttling</label>
+            <div class="flex items-center space-x-3">
+              <input type="checkbox" id="tarpitToggle" checked class="w-4 h-4 rounded text-amber-500 focus:ring-0">
+              <span class="text-xs text-slate-300">Enable Adaptive Latency Delay</span>
+            </div>
+            <p class="text-[11px] text-slate-500 mt-2">Slows responses down up to 3.0 seconds to exhaust brute-force bot connection pools.</p>
+          </div>
+
+          <div class="bg-slate-950 border border-slate-800 rounded-xl p-4">
+            <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Max Tarpit Delay (Sec)</label>
+            <input type="number" id="maxDelayInput" value="3.0" step="0.5" min="0" max="10" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white">
+            <p class="text-[11px] text-slate-500 mt-2">Maximum artificial latency applied to CRITICAL threat sessions.</p>
+          </div>
+
+          <div class="bg-slate-950 border border-slate-800 rounded-xl p-4">
+            <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Deceptive Persona Morph</label>
+            <select id="personaSelect" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-slate-300">
+              <option value="smvitm_academic">SMVITM Academic (Apache / Ubuntu)</option>
+              <option value="enterprise_corp">Corporate Enterprise Portal</option>
+              <option value="fintech_bank">FinTech Bank / IIS ASP.NET</option>
+              <option value="cloud_portal">Cloud Infrastructure / AWS Node</option>
+            </select>
+            <p class="text-[11px] text-slate-500 mt-2">Morphs HTTP Server banners and tech stack headers returned to scanners.</p>
+          </div>
+        </div>
+
+        <div class="flex justify-end">
+          <button onclick="saveAdaptiveConfig()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-4 py-2 rounded-xl text-xs transition">
+            Save Engine Configuration
+          </button>
+        </div>
+      </div>
+
+      <!-- Built-in Attack Simulator Card -->
+      <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 space-y-4">
+        <div>
+          <h3 class="text-base font-bold text-white flex items-center space-x-2">
+            <i class="fa-solid fa-gamepad text-amber-400"></i>
+            <span>Interactive Attack Simulator (Viva & Project Demo Tool)</span>
+          </h3>
+          <p class="text-xs text-slate-400 mt-1">
+            Trigger live simulated attacks against SMVITM to observe real-time detection, threat scoring, and trap actions!
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+          
+          <div class="bg-slate-950 border border-slate-800 rounded-xl p-4 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center space-x-2 text-rose-400 font-bold text-xs uppercase mb-1">
+                <i class="fa-solid fa-bomb"></i>
+                <span>Vector 1: Student USN Brute Force</span>
+              </div>
+              <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                Simulates 3 consecutive failed login attempts with different passwords against student USN <code class="text-amber-400 font-mono">4MW21CS001</code> from IP <code class="text-cyan-400 font-mono">192.168.1.188</code>.
+              </p>
+            </div>
+            <button onclick="triggerSimulation('brute_force')" class="w-full bg-rose-600 hover:bg-rose-500 text-white font-semibold py-2 rounded-lg text-xs transition">
+              Simulate USN Brute-Force
+            </button>
+          </div>
+
+          <div class="bg-slate-950 border border-slate-800 rounded-xl p-4 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center space-x-2 text-amber-400 font-bold text-xs uppercase mb-1">
+                <i class="fa-solid fa-database"></i>
+                <span>Vector 2: SQLi on IA Marks DB</span>
+              </div>
+              <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                Simulates an automated SQLMap probe attempting to dump the internal marks table with <code class="text-amber-400 font-mono">' UNION SELECT ...</code>.
+              </p>
+            </div>
+            <button onclick="triggerSimulation('sqli')" class="w-full bg-amber-600 hover:bg-amber-500 text-white font-semibold py-2 rounded-lg text-xs transition">
+              Simulate SQL Injection
+            </button>
+          </div>
+
+          <div class="bg-slate-950 border border-slate-800 rounded-xl p-4 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center space-x-2 text-cyan-400 font-bold text-xs uppercase mb-1">
+                <i class="fa-solid fa-folder-tree"></i>
+                <span>Vector 3: Exam Vault Traversal</span>
+              </div>
+              <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                Simulates path traversal targeting <code class="text-cyan-400 font-mono">../../etc/passwd</code> and confidential question paper paths.
+              </p>
+            </div>
+            <button onclick="triggerSimulation('traversal')" class="w-full bg-cyan-600 hover:bg-cyan-500 text-white font-semibold py-2 rounded-lg text-xs transition">
+              Simulate Path Traversal
+            </button>
+          </div>
+
+        </div>
+
+        <!-- Reset Button -->
+        <div class="pt-4 border-t border-slate-800 flex items-center justify-between">
+          <span class="text-xs text-slate-500">Need to start fresh for a live viva demonstration?</span>
+          <button onclick="clearAllTelemetry()" class="bg-slate-800 hover:bg-rose-900/60 text-slate-300 hover:text-rose-200 border border-slate-700 px-4 py-2 rounded-xl text-xs transition flex items-center space-x-2">
+            <i class="fa-solid fa-trash-can"></i>
+            <span>Reset All Telemetry Logs</span>
+          </button>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-800 bg-slate-900/80 px-6 py-4 text-center text-xs text-slate-500 font-mono">
+    Shri Madhwa Vadiraja Institute of Technology & Management (SMVITM) &bull; Campus Cyber Defense SOC &bull; Token: <span class="text-amber-400">{{ admin_token }}</span>
+  </footer>
+
+  <script src="/public/js/admin.js"></script>
+</body>
+</html>

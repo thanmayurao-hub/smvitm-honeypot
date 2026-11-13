@@ -1,0 +1,49 @@
+[
+  {
+    "id": "canary_vtu_qp_2025",
+    "filename": "VTU_Confidential_End_Sem_Question_Paper_Dec2025.xlsx",
+    "description": "Confidential VTU scheme & question paper drafts for 5th & 7th Semester",
+    "type": "EXAM_QUESTION_DECOY",
+    "downloads": 2,
+    "last_accessed": "2026-11-03T04:39:17.617266Z",
+    "tripped_by": [
+      {
+        "ip": "127.0.0.1",
+        "timestamp": "2026-10-14T07:08:42.746571Z",
+        "user_agent": "SMVITM-PentestClient/2.0"
+      },
+      {
+        "ip": "2409:40f2:314f:2303:280b:d275:7f5e:775d",
+        "timestamp": "2026-11-03T04:39:17.617266Z",
+        "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.5 Mobile/15E148 Safari/604.1"
+      }
+    ]
+  },
+  {
+    "id": "canary_ia_marks",
+    "filename": "SMVITM_Final_Internal_Assessment_Marks_Ledger.xlsx",
+    "description": "Faculty consolidated IA marks, lab records & attendance percentages",
+    "type": "ACADEMIC_MARKS_DECOY",
+    "downloads": 0,
+    "last_accessed": null,
+    "tripped_by": []
+  },
+  {
+    "id": "canary_erp_db_backup",
+    "filename": "smvitm_student_erp_backup_dump.sql",
+    "description": "Simulated PostgreSQL dump of student logins, USNs, and fee payment hashes",
+    "type": "DATABASE_DUMP",
+    "downloads": 0,
+    "last_accessed": null,
+    "tripped_by": []
+  },
+  {
+    "id": "canary_campus_vpn",
+    "filename": "smvitm_faculty_campus_vpn.ovpn",
+    "description": "Encrypted campus staff OpenVPN profile for internal grading servers",
+    "type": "CAMPUS_VPN_PROFILE",
+    "downloads": 0,
+    "last_accessed": null,
+    "tripped_by": []
+  }
+]

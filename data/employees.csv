@@ -1,0 +1,21 @@
+id,name,role,email,department,location,status
+101,Dr. Thirumaleshwara Bhat,Principal & Professor,principal@smvitm.ac.in,Administration,Admin Block,Active
+102,Dr. Vasudeva,Professor & Dean (Research),dean.research@smvitm.ac.in,CSE Dept,CS Block,Active
+103,Dr. Sowmya J. Bhat,Professor & HOD,hod.cse@smvitm.ac.in,Computer Science & Engg,CS Block,Active
+104,Dr. Balachandra Achar,Professor & HOD,hod.ece@smvitm.ac.in,Electronics & Communication,EC Block,Active
+105,Dr. Anand V. R.,Professor & HOD,hod.civil@smvitm.ac.in,Civil Engineering,Civil Block,Active
+106,Dr. Gajanan Anne,Associate Professor & HOD,hod.mech@smvitm.ac.in,Mechanical Engineering,Mech Block,Active
+107,Dr. Surabhi R.,Associate Professor & HOD,hod.aiml@smvitm.ac.in,Artificial Intelligence & ML,AI Block,Active
+108,Prof. Manoj T.,Assistant Professor (Senior Scale),manoj.cse@smvitm.ac.in,Computer Science & Engg,CS Block,Active
+109,Prof. Priyanka D.,Assistant Professor,priyanka.aiml@smvitm.ac.in,Artificial Intelligence & ML,AI Block,Active
+110,Prof. Chethan R.,Assistant Professor,chethan.ece@smvitm.ac.in,Electronics & Communication,EC Block,Active
+111,Dr. Raviprabha K.,Associate Professor (Physics),raviprabha.phy@smvitm.ac.in,Basic Science,Main Block,Active
+112,Prof. Renita Sharon,Assistant Professor (Mathematics),renita.math@smvitm.ac.in,Mathematics Dept,Main Block,Active
+113,Prof. Sudhir Shetty,Training & Placement Officer,placement@smvitm.ac.in,Career & Placement Cell,Placement Block,Active
+114,Mr. Prashanth Kumar,System Administrator,sysadmin@smvitm.ac.in,IT & Campus Network,Server Room,Active
+115,Mr. Raghavendra Rao,Finance & Accounts Superintendent,accounts@smvitm.ac.in,Accounts & Finance,Admin Block,Active
+116,Mrs. Sujaya B.,Examination Controller Incharge,examcell@smvitm.ac.in,Examination Section,Exam Vault,Active
+117,Mr. Naveen Shenoy,Hostel Warden & Student Welfare,hostel.warden@smvitm.ac.in,Student Affairs,Boys Hostel,Active
+118,Prof. Deepthi G. Pai,Assistant Professor,deepthi.cse@smvitm.ac.in,Computer Science & Engg,CS Block,Active
+119,Prof. Rajesh Nayak,Assistant Professor,rajesh.mech@smvitm.ac.in,Mechanical Engineering,Mech Block,Active
+120,Mrs. Vidya Bhat,Librarian Incharge,library@smvitm.ac.in,Central Library,Library Block,Active

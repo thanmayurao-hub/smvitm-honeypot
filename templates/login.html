@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SMVITM - Campus ERP & Academic Management Portal (e-Shikshana)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/public/css/style.css">
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col justify-between selection:bg-amber-500 selection:text-slate-950">
+
+  <!-- Header Navigation -->
+  <header class="border-b border-slate-800 bg-slate-900/90 backdrop-blur px-6 py-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
+    <div class="flex items-center space-x-3.5">
+      <div class="h-11 w-11 rounded-xl bg-gradient-to-tr from-amber-600 to-amber-400 flex items-center justify-center font-black text-slate-950 shadow-lg shadow-amber-500/20 text-xl flex-shrink-0">
+        <i class="fa-solid fa-graduation-cap"></i>
+      </div>
+      <div>
+        <div class="flex items-center space-x-2">
+          <span class="font-bold text-lg tracking-tight text-white">{{ org_name }}</span>
+          <span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">
+            BANTAKAL, UDUPI
+          </span>
+        </div>
+        <span class="text-xs block text-slate-400 font-sans mt-0.5">{{ affiliation }}</span>
+      </div>
+    </div>
+
+    <div class="flex items-center space-x-3 text-xs font-mono">
+      <!-- Public Share Link Pill -->
+      <button onclick="copyCurrentShareLink()" id="shareLinkBtn" class="bg-emerald-950/80 hover:bg-emerald-900 text-emerald-300 border border-emerald-700/80 px-3 py-1.5 rounded-lg transition flex items-center space-x-1.5 shadow-sm">
+        <i class="fa-solid fa-share-nodes text-emerald-400"></i>
+        <span id="shareBtnText">Share Public Link</span>
+      </button>
+
+      <a href="/admin.html" class="text-slate-400 hover:text-cyan-400 transition flex items-center space-x-1.5 bg-slate-800/80 px-3 py-1.5 rounded-lg border border-slate-700">
+        <i class="fa-solid fa-shield-halved text-cyan-400"></i>
+        <span>Campus SOC</span>
+      </a>
+
+      <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-950 text-emerald-400 border border-emerald-800">
+        <span class="w-1.5 h-1.5 mr-1.5 bg-emerald-400 rounded-full animate-pulse"></span>
+        Public Online
+      </span>
+    </div>
+  </header>
+
+  <!-- Login Main Container -->
+  <main class="flex-grow flex items-center justify-center px-4 py-8">
+    <div class="max-w-lg w-full bg-slate-900/90 border border-slate-800 rounded-2xl shadow-2xl p-6 sm:p-8 backdrop-blur-xl relative overflow-hidden">
+      <!-- Glow effect -->
+      <div class="absolute -top-24 -left-24 w-48 h-48 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -bottom-24 -right-24 w-48 h-48 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="text-center mb-6 relative">
+        <div class="inline-flex p-3 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-400 mb-3">
+          <i class="fa-solid fa-building-columns text-2xl"></i>
+        </div>
+        <h1 class="text-xl font-bold tracking-tight text-white">e-Shikshana Campus ERP</h1>
+        <p class="text-slate-400 text-xs mt-1">Unified Faculty, Staff & Public Student Academic Sign-In</p>
+      </div>
+
+      <!-- Quick 1-Click Login Options (Accessible for Anyone) -->
+      <div class="mb-6 p-3.5 rounded-xl bg-slate-950 border border-slate-800">
+        <div class="text-[11px] font-mono font-semibold text-slate-400 uppercase tracking-wider mb-2.5 flex items-center justify-between">
+          <span class="flex items-center space-x-1.5">
+            <i class="fa-solid fa-bolt text-amber-400"></i>
+            <span>1-Click Public Demo Access</span>
+          </span>
+          <span class="text-[10px] text-emerald-400 font-sans">No password needed</span>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+          <button onclick="quickLogin('student')" type="button" class="bg-blue-600/20 hover:bg-blue-600/30 text-blue-300 border border-blue-500/30 hover:border-blue-500/50 p-2.5 rounded-lg text-xs font-semibold flex flex-col items-center justify-center space-y-1 transition text-center">
+            <i class="fa-solid fa-user-graduate text-blue-400 text-sm"></i>
+            <span>Student / Guest</span>
+            <span class="text-[9px] text-blue-400/80 font-mono">Instant Access</span>
+          </button>
+          
+          <button onclick="quickLogin('faculty')" type="button" class="bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/30 hover:border-amber-500/50 p-2.5 rounded-lg text-xs font-semibold flex flex-col items-center justify-center space-y-1 transition text-center">
+            <i class="fa-solid fa-chalkboard-user text-amber-400 text-sm"></i>
+            <span>Faculty Member</span>
+            <span class="text-[9px] text-amber-400/80 font-mono">Dr. Thirumaleshwara</span>
+          </button>
+
+          <button onclick="quickLogin('trap')" type="button" class="bg-rose-600/20 hover:bg-rose-600/30 text-rose-300 border border-rose-500/30 hover:border-rose-500/50 p-2.5 rounded-lg text-xs font-semibold flex flex-col items-center justify-center space-y-1 transition text-center">
+            <i class="fa-solid fa-spider text-rose-400 text-sm"></i>
+            <span>Test Trap Mode</span>
+            <span class="text-[9px] text-rose-400/80 font-mono">3-Attempt Brute Force</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Alert Box -->
+      <div id="alertBox" class="hidden mb-5 p-4 rounded-xl text-sm font-medium border flex items-start space-x-3 transition-all duration-200">
+        <i id="alertIcon" class="fa-solid fa-triangle-exclamation mt-0.5"></i>
+        <div id="alertMessage" class="flex-1 text-xs leading-relaxed"></div>
+      </div>
+
+      <!-- Form -->
+      <form id="loginForm" class="space-y-4" onsubmit="handleLogin(event)">
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2" for="username">
+            Faculty Email / Student USN / Any Username
+          </label>
+          <div class="relative">
+            <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
+              <i class="fa-regular fa-id-card"></i>
+            </div>
+            <input
+              id="username"
+              type="text"
+              required
+              autocomplete="username"
+              placeholder="e.g. 4MW22CS050, student@smvitm.ac.in, or your name"
+              class="w-full bg-slate-950 border border-slate-700 rounded-xl pl-10 pr-4 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition"
+            >
+          </div>
+        </div>
+
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider" for="password">
+              Password
+            </label>
+            <span class="text-xs text-amber-400 hover:underline cursor-pointer" onclick="toggleForgot()">Reset via Exam Cell</span>
+          </div>
+          <div class="relative">
+            <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
+              <i class="fa-solid fa-lock"></i>
+            </div>
+            <input
+              id="password"
+              type="password"
+              required
+              autocomplete="current-password"
+              placeholder="Any password or 'student123'"
+              class="w-full bg-slate-950 border border-slate-700 rounded-xl pl-10 pr-4 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition"
+            >
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between text-xs text-slate-400">
+          <label class="flex items-center space-x-2 cursor-pointer">
+            <input id="publicAccessCheckbox" type="checkbox" checked class="rounded bg-slate-950 border-slate-700 text-amber-500 focus:ring-0">
+            <span>Public / Student Access Mode</span>
+          </label>
+          <span class="text-slate-500 font-mono">VTU-EDP Secure</span>
+        </div>
+
+        <button
+          id="submitBtn"
+          type="submit"
+          class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold py-3 px-4 rounded-xl text-xs transition duration-150 flex items-center justify-center space-x-2 shadow-lg shadow-amber-500/20 active:scale-[0.99]"
+        >
+          <span id="btnText">Sign In to Campus ERP</span>
+          <i id="btnIcon" class="fa-solid fa-arrow-right text-xs"></i>
+          <svg id="btnSpinner" class="hidden animate-spin h-4 w-4 text-slate-950" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+          </svg>
+        </button>
+      </form>
+
+      <!-- Testing Helper Drawer -->
+      <div class="mt-6 pt-5 border-t border-slate-800">
+        <details class="text-xs text-slate-400 group">
+          <summary class="cursor-pointer font-medium text-slate-300 hover:text-white flex items-center justify-between select-none">
+            <span class="flex items-center space-x-2">
+              <i class="fa-solid fa-circle-info text-amber-400"></i>
+              <span>SMVITM Honeypot & Evaluation Guide</span>
+            </span>
+            <i class="fa-solid fa-chevron-down transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-3 p-3 rounded-xl bg-slate-950 border border-slate-800 text-slate-300 space-y-2 font-mono text-[11px]">
+            <div><span class="text-blue-400 font-semibold">Anyone / Public:</span> Click "Student / Guest" or enter any USN with password <code>student123</code>.</div>
+            <div><span class="text-emerald-400 font-semibold">Authorized Faculty:</span> <code>faculty@smvitm.ac.in</code> / <code>demo123</code></div>
+            <div><span class="text-rose-400 font-semibold">Brute-Force Trap:</span> Enter any USN with 3 different passwords, or click "Test Trap Mode" above! The honeypot traps the actor into the deceptive decoy workspace.</div>
+            <div><span class="text-cyan-400 font-semibold">Campus SOC Monitor:</span> Inspect telemetry at <a href="/admin.html" class="underline text-amber-400">/admin.html</a> (Token: <code>secretadmin123</code>).</div>
+          </div>
+        </details>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-800 bg-slate-900/70 px-6 py-4 text-center text-xs text-slate-500 font-mono">
+    <span>Shri Madhwa Vadiraja Institute of Technology & Management (SMVITM) &bull; Vishwothama Nagar, Bantakal, Udupi - 574115.</span>
+  </footer>
+
+  <script>
+    // Quick 1-Click Login Helper
+    function quickLogin(type) {
+      const userInput = document.getElementById('username');
+      const passInput = document.getElementById('password');
+
+      if (type === 'student') {
+        userInput.value = '4MW22CS050';
+        passInput.value = 'student123';
+        document.getElementById('publicAccessCheckbox').checked = true;
+        document.getElementById('loginForm').dispatchEvent(new Event('submit', { cancelable: true }));
+      } else if (type === 'faculty') {
+        userInput.value = 'faculty@smvitm.ac.in';
+        passInput.value = 'demo123';
+        document.getElementById('publicAccessCheckbox').checked = false;
+        document.getElementById('loginForm').dispatchEvent(new Event('submit', { cancelable: true }));
+      } else if (type === 'trap') {
+        userInput.value = '4MW21CS001';
+        passInput.value = 'password2026';
+        handleSimTrap();
+      }
+    }
+
+    async function handleSimTrap() {
+      const btn = document.getElementById('submitBtn');
+      const btnText = document.getElementById('btnText');
+      const alertBox = document.getElementById('alertBox');
+      const alertMessage = document.getElementById('alertMessage');
+      const alertIcon = document.getElementById('alertIcon');
+
+      alertBox.classList.add('hidden');
+      btn.disabled = true;
+      btnText.textContent = "Simulating Brute-Force Intrusion...";
+
+      try {
+        const res = await fetch('/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username: '4MW21CS001', sim_trap: true })
+        });
+        const data = await res.json();
+        alertBox.className = "mb-5 p-4 rounded-xl text-sm font-medium border flex items-start space-x-3 bg-amber-950/50 border-amber-800 text-amber-200";
+        alertIcon.className = "fa-solid fa-spider text-rose-400 mt-0.5";
+        alertMessage.innerHTML = "<strong>Attacker Trapped!</strong> 3-attempt credential stuffing detected. Diverting session into Deceptive Sandbox...";
+        alertBox.classList.remove('hidden');
+
+        setTimeout(() => {
+          window.location.href = '/dashboard';
+        }, 1300);
+      } catch (err) {
+        alertBox.className = "mb-5 p-4 rounded-xl text-sm font-medium border flex items-start space-x-3 bg-rose-950/50 border-rose-800 text-rose-200";
+        alertIcon.className = "fa-solid fa-circle-xmark text-rose-400 mt-0.5";
+        alertMessage.textContent = "Connection error. Please try again.";
+        alertBox.classList.remove('hidden');
+      } finally {
+        btn.disabled = false;
+        btnText.textContent = "Sign In to Campus ERP";
+      }
+    }
+
+    async function handleLogin(e) {
+      if (e) e.preventDefault();
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const publicAccess = document.getElementById('publicAccessCheckbox').checked;
+
+      const btn = document.getElementById('submitBtn');
+      const btnText = document.getElementById('btnText');
+      const btnIcon = document.getElementById('btnIcon');
+      const btnSpinner = document.getElementById('btnSpinner');
+      const alertBox = document.getElementById('alertBox');
+      const alertMessage = document.getElementById('alertMessage');
+      const alertIcon = document.getElementById('alertIcon');
+
+      alertBox.classList.add('hidden');
+      btn.disabled = true;
+      btnText.textContent = "Verifying with Campus Directory...";
+      btnIcon.classList.add('hidden');
+      btnSpinner.classList.remove('hidden');
+
+      try {
+        const res = await fetch('/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ 
+            username, 
+            password, 
+            public_access: publicAccess,
+            mode: publicAccess ? 'guest' : 'standard'
+          })
+        });
+
+        const data = await res.json();
+
+        if (data.ok) {
+          if (data.trap) {
+            alertBox.className = "mb-5 p-4 rounded-xl text-sm font-medium border flex items-start space-x-3 bg-amber-950/50 border-amber-800 text-amber-200";
+            alertIcon.className = "fa-solid fa-graduation-cap text-amber-400 mt-0.5";
+            alertMessage.innerHTML = "<strong>Credentials Accepted.</strong> Loading SMVITM Academic Faculty Workspace...";
+            alertBox.classList.remove('hidden');
+
+            setTimeout(() => {
+              window.location.href = '/dashboard';
+            }, 1200);
+          } else if (data.authenticated) {
+            alertBox.className = "mb-5 p-4 rounded-xl text-sm font-medium border flex items-start space-x-3 bg-emerald-950/50 border-emerald-800 text-emerald-200";
+            alertIcon.className = "fa-solid fa-circle-check text-emerald-400 mt-0.5";
+            const roleBadge = data.role ? `(${data.role})` : '';
+            alertMessage.innerHTML = `<strong>Authentication Successful.</strong> Welcome ${data.user || ''} ${roleBadge} to SMVITM Campus Intranet.`;
+            alertBox.classList.remove('hidden');
+
+            setTimeout(() => {
+              window.location.href = '/dashboard';
+            }, 1000);
+          }
+        } else {
+          alertBox.className = "mb-5 p-4 rounded-xl text-sm font-medium border flex items-start space-x-3 bg-rose-950/50 border-rose-800 text-rose-200";
+          alertIcon.className = "fa-solid fa-triangle-exclamation text-rose-400 mt-0.5";
+          alertMessage.innerHTML = `<strong>Authentication Notice:</strong> ${data.message || 'Invalid USN or Password.'}`;
+          alertBox.classList.remove('hidden');
+          document.getElementById('password').value = '';
+          document.getElementById('password').focus();
+        }
+      } catch (err) {
+        alertBox.className = "mb-5 p-4 rounded-xl text-sm font-medium border flex items-start space-x-3 bg-rose-950/50 border-rose-800 text-rose-200";
+        alertIcon.className = "fa-solid fa-circle-xmark text-rose-400 mt-0.5";
+        alertMessage.textContent = "Campus server connection timeout. Please check your network.";
+        alertBox.classList.remove('hidden');
+      } finally {
+        btn.disabled = false;
+        btnText.textContent = "Sign In to Campus ERP";
+        btnIcon.classList.remove('hidden');
+        btnSpinner.classList.add('hidden');
+      }
+    }
+
+    function toggleForgot() {
+      alert("Password resets require physical verification with the SMVITM Examination Section or HOD approval.");
+    }
+
+    function copyCurrentShareLink() {
+      const url = window.location.origin;
+      navigator.clipboard.writeText(url).then(() => {
+        const btnText = document.getElementById('shareBtnText');
+        btnText.textContent = "Link Copied!";
+        setTimeout(() => { btnText.textContent = "Share Public Link"; }, 2500);
+      }).catch(() => {
+        prompt("Copy this shareable link:", window.location.origin);
+      });
+    }
+  </script>
+</body>
+</html>

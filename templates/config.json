@@ -1,0 +1,24 @@
+{
+  "PORT": 5000,
+  "ADMIN_TOKEN": "secretadmin123",
+  "DEMO_USERNAME": "faculty@smvitm.ac.in",
+  "DEMO_PASSWORD": "demo123",
+  "HONEYPOT_NAME": "SMVITM Adaptive Campus Honeypot",
+  "ORGANIZATION": "Shri Madhwa Vadiraja Institute of Technology & Management",
+  "INSTITUTION_SHORT": "SMVITM, Bantakal",
+  "CAMPUS_AFFILIATION": "Affiliated to VTU, Belagavi | Approved by AICTE | Accredited with NAAC 'A' Grade",
+  "ADAPTIVE_ENGINE": {
+    "ENABLED": true,
+    "TARPIT_ENABLED": true,
+    "MAX_TARPIT_DELAY_SEC": 3.0,
+    "BRUTE_FORCE_THRESHOLD": 3,
+    "DEVIATION_DETECTION": true,
+    "DEFAULT_PERSONA": "smvitm_academic"
+  },
+  "SMTP_HOST": "",
+  "SMTP_PORT": 587,
+  "SMTP_USER": "",
+  "SMTP_PASS": "",
+  "ADMIN_EMAIL": "cyber-defense@smvitm.ac.in",
+  "ALERT_FROM": "honeypot-alert@smvitm.ac.in"
+}

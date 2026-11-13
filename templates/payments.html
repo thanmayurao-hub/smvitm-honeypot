@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Fees & Accounts Ledger - SMVITM Bantakal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/public/css/style.css">
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col selection:bg-amber-500 selection:text-slate-950">
+
+  <!-- Top Navigation Bar -->
+  <nav class="border-b border-slate-800 bg-slate-900/95 backdrop-blur sticky top-0 z-50 px-6 py-3.5 flex items-center justify-between">
+    <div class="flex items-center space-x-8">
+      <div class="flex items-center space-x-3">
+        <a href="/dashboard" class="h-10 w-10 rounded-xl bg-amber-500 flex items-center justify-center font-bold text-slate-950 shadow-lg shadow-amber-500/20 text-lg">
+          <i class="fa-solid fa-graduation-cap"></i>
+        </a>
+        <div>
+          <span class="font-bold text-base tracking-tight text-white">SMVITM Accounts Section</span>
+          <span class="text-[11px] block text-amber-400 font-mono">Fee Disbursal & VTU Examination Ledger</span>
+        </div>
+      </div>
+
+      <div class="hidden md:flex items-center space-x-1">
+        <a href="/dashboard" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800 transition flex items-center space-x-2">
+          <i class="fa-solid fa-chart-pie text-xs"></i>
+          <span>Academic Dashboard</span>
+        </a>
+        <a href="/employees" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800 transition flex items-center space-x-2">
+          <i class="fa-solid fa-chalkboard-user text-xs"></i>
+          <span>Faculty & Staff</span>
+        </a>
+        <a href="/payments" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-amber-500/20 text-amber-300 border border-amber-500/30 flex items-center space-x-2">
+          <i class="fa-solid fa-receipt text-xs"></i>
+          <span>Student Fees & Accounts</span>
+        </a>
+        <a href="/files" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800 transition flex items-center space-x-2">
+          <i class="fa-solid fa-vault text-xs"></i>
+          <span>Exam Papers & IA Marks</span>
+        </a>
+        <a href="/terminal" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-cyan-400 hover:bg-cyan-500/10 transition flex items-center space-x-2 border border-cyan-500/20">
+          <i class="fa-solid fa-terminal text-xs"></i>
+          <span>Campus Shell</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="flex items-center space-x-4">
+      <a href="/admin.html" class="text-xs font-mono text-cyan-400 bg-cyan-950/40 hover:bg-cyan-900/50 border border-cyan-800/60 px-3 py-1.5 rounded-lg transition flex items-center space-x-1.5">
+        <i class="fa-solid fa-shield-halved"></i>
+        <span>Campus SOC</span>
+      </a>
+      <a href="/" class="text-slate-400 hover:text-rose-400 text-sm ml-2" title="Sign Out">
+        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Main Body -->
+  <main class="flex-grow max-w-7xl w-full mx-auto px-6 py-8">
+
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+      <div>
+        <h1 class="text-2xl font-bold tracking-tight text-white flex items-center space-x-3">
+          <span>Student Fee Collections & Accounts Ledger</span>
+          <span class="text-xs font-mono bg-emerald-500/20 text-emerald-400 px-2.5 py-1 rounded-md border border-emerald-500/30">
+            Canara Bank SMVITM Gateway
+          </span>
+        </h1>
+        <p class="text-xs text-slate-400 mt-1">
+          Confidential financial accounts: VTU examination remittances, semester tuition payments, and research lab grants.
+        </p>
+      </div>
+
+      <div class="flex items-center space-x-3">
+        <button onclick="openWireModal()" class="bg-rose-600 hover:bg-rose-500 text-white font-bold px-4 py-2 rounded-xl text-xs flex items-center space-x-2 shadow-lg shadow-rose-600/30 transition">
+          <i class="fa-solid fa-paper-plane"></i>
+          <span>Authorize Vendor Transfer</span>
+        </button>
+        <a href="/files/download/SMVITM_Final_Internal_Assessment_Marks_Ledger.xlsx" class="bg-slate-800 hover:bg-slate-750 text-slate-200 border border-slate-700 font-medium px-4 py-2 rounded-xl text-xs flex items-center space-x-2 transition">
+          <i class="fa-solid fa-file-excel text-emerald-400"></i>
+          <span>Export Fee Audit (Decoy)</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Financial Summary Cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
+      <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-6">
+        <div class="text-xs font-mono text-slate-400 mb-1">TOTAL SEMESTER REVENUE</div>
+        <div class="text-2xl font-bold text-white">&#8377;2,84,50,000.00</div>
+        <div class="text-[11px] text-emerald-400 mt-2 flex items-center space-x-1">
+          <i class="fa-solid fa-arrow-trend-up"></i>
+          <span>94% Odd Semester Clearances</span>
+        </div>
+      </div>
+      <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-6">
+        <div class="text-xs font-mono text-slate-400 mb-1">VTU EXAMINATION DUES HELD</div>
+        <div class="text-2xl font-bold text-amber-400">&#8377;48,50,000.00</div>
+        <div class="text-[11px] text-slate-400 mt-2">Belagavi University Remittance Scheduled</div>
+      </div>
+      <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-6">
+        <div class="text-xs font-mono text-slate-400 mb-1">CANARA BANK CAMPUS BRANCH</div>
+        <div class="text-2xl font-bold text-cyan-400">&#8377;1,15,40,000.00</div>
+        <div class="text-[11px] text-slate-400 mt-2">IFSC: CNRB0008581 &bull; Bantakal</div>
+      </div>
+    </div>
+
+    <!-- Transactions Table -->
+    <div class="bg-slate-900/80 border border-slate-800 rounded-2xl overflow-hidden shadow-2xl">
+      <div class="p-4 border-b border-slate-800 flex items-center justify-between">
+        <h3 class="text-sm font-semibold text-white flex items-center space-x-2">
+          <i class="fa-solid fa-receipt text-amber-400"></i>
+          <span>Recent Institutional Settlements & Fee Disbursals</span>
+        </h3>
+        <span class="text-xs font-mono text-slate-500">Live Campus Ledger Feed</span>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="border-b border-slate-800 bg-slate-900 text-[11px] font-semibold text-slate-400 uppercase tracking-wider font-mono">
+              <th class="py-3 px-4">Receipt ID</th>
+              <th class="py-3 px-4">Beneficiary / Category</th>
+              <th class="py-3 px-4">Campus Account</th>
+              <th class="py-3 px-4">Amount (INR)</th>
+              <th class="py-3 px-4">Authorized By</th>
+              <th class="py-3 px-4">Date</th>
+              <th class="py-3 px-4">Status</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800 text-xs font-mono">
+            <tr class="table-row-hover hover:bg-slate-850">
+              <td class="py-3 px-4 text-amber-400 font-bold">TX-VTU-90214</td>
+              <td class="py-3 px-4 font-semibold text-white font-sans">VTU Belagavi End-Sem Exam Fee Remittance</td>
+              <td class="py-3 px-4 text-slate-400">CNRB-0008581-9921</td>
+              <td class="py-3 px-4 font-bold text-white">&#8377;42,50,000.00</td>
+              <td class="py-3 px-4 text-slate-300 font-sans">examcell@smvitm.ac.in</td>
+              <td class="py-3 px-4 text-slate-400">2026-10-01</td>
+              <td class="py-3 px-4">
+                <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-950 text-emerald-400 border border-emerald-800">
+                  REMITTED
+                </span>
+              </td>
+            </tr>
+            <tr class="table-row-hover hover:bg-slate-850">
+              <td class="py-3 px-4 text-amber-400 font-bold">TX-AICTE-1044</td>
+              <td class="py-3 px-4 font-semibold text-white font-sans">AICTE Faculty Research & Lab Grant</td>
+              <td class="py-3 px-4 text-slate-400">CNRB-0008581-3312</td>
+              <td class="py-3 px-4 font-bold text-white">&#8377;18,50,000.00</td>
+              <td class="py-3 px-4 text-slate-300 font-sans">dean.research@smvitm.ac.in</td>
+              <td class="py-3 px-4 text-slate-400">2026-10-04</td>
+              <td class="py-3 px-4">
+                <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-950 text-emerald-400 border border-emerald-800">
+                  CREDITED
+                </span>
+              </td>
+            </tr>
+            <tr class="table-row-hover hover:bg-slate-850">
+              <td class="py-3 px-4 text-amber-400 font-bold">TX-CAMPUS-782</td>
+              <td class="py-3 px-4 font-semibold text-white font-sans">BSNL 1 Gbps Leased Line & Cloud Servers</td>
+              <td class="py-3 px-4 text-slate-400">CNRB-0008581-4401</td>
+              <td class="py-3 px-4 font-bold text-white">&#8377;6,40,000.00</td>
+              <td class="py-3 px-4 text-slate-300 font-sans">sysadmin@smvitm.ac.in</td>
+              <td class="py-3 px-4 text-slate-400">2026-10-08</td>
+              <td class="py-3 px-4">
+                <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-950 text-emerald-400 border border-emerald-800">
+                  DISBURSED
+                </span>
+              </td>
+            </tr>
+            <tr class="table-row-hover hover:bg-slate-850">
+              <td class="py-3 px-4 text-amber-400 font-bold">TX-HOSTEL-901</td>
+              <td class="py-3 px-4 font-semibold text-white font-sans">Student Hostel & Mess Mess Caterer Settlement</td>
+              <td class="py-3 px-4 text-slate-400">CNRB-0008581-8899</td>
+              <td class="py-3 px-4 font-bold text-white">&#8377;28,90,000.00</td>
+              <td class="py-3 px-4 text-slate-300 font-sans">hostel.warden@smvitm.ac.in</td>
+              <td class="py-3 px-4 text-slate-400">2026-10-11</td>
+              <td class="py-3 px-4">
+                <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-950 text-amber-400 border border-amber-800">
+                  IN ESCROW
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Wire Simulation Modal -->
+  <div id="wireModal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-md w-full p-6 shadow-2xl relative">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-base font-bold text-white flex items-center space-x-2">
+          <i class="fa-solid fa-triangle-exclamation text-amber-400"></i>
+          <span>Disburse Institutional Vendor Payment</span>
+        </h3>
+        <button onclick="closeWireModal()" class="text-slate-400 hover:text-white">&times;</button>
+      </div>
+      <p class="text-xs text-slate-400 mb-4">
+        Requires Principal & Finance Superintendent digital signature key. Unauthorized transfers are flagged to the Campus SOC.
+      </p>
+      <div class="space-y-3">
+        <div>
+          <label class="block text-xs font-mono text-slate-400 mb-1">Beneficiary Account / IFSC</label>
+          <input type="text" placeholder="CNRB0008581-VENDOR" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white">
+        </div>
+        <div>
+          <label class="block text-xs font-mono text-slate-400 mb-1">Amount (INR)</label>
+          <input type="number" placeholder="150000" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white">
+        </div>
+      </div>
+      <div class="mt-6 flex justify-end space-x-3">
+        <button onclick="closeWireModal()" class="px-4 py-2 rounded-lg bg-slate-800 text-slate-300 text-xs hover:bg-slate-700">Cancel</button>
+        <button onclick="submitFakeWire()" class="px-4 py-2 rounded-lg bg-rose-600 text-white font-bold text-xs hover:bg-rose-500">Authorize Transfer</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="border-t border-slate-800 bg-slate-900/80 px-6 py-4 text-center text-xs text-slate-500 font-mono">
+    SMVITM Accounts Section Honeypot Ledger. All transaction manipulation attempts trigger forensic telemetry.
+  </footer>
+
+  <script>
+    function openWireModal() { document.getElementById('wireModal').classList.remove('hidden'); }
+    function closeWireModal() { document.getElementById('wireModal').classList.add('hidden'); }
+    function submitFakeWire() {
+      alert("Honeypot Trap Triggered: Financial tampering attempt captured and logged to SMVITM SOC.");
+      closeWireModal();
+    }
+  </script>
+</body>
+</html>

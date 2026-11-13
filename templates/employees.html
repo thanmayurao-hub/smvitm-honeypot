@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Faculty & Staff Directory - SMVITM Bantakal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/public/css/style.css">
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col selection:bg-amber-500 selection:text-slate-950">
+
+  <!-- Top Navigation Bar -->
+  <nav class="border-b border-slate-800 bg-slate-900/95 backdrop-blur sticky top-0 z-50 px-6 py-3.5 flex items-center justify-between">
+    <div class="flex items-center space-x-8">
+      <div class="flex items-center space-x-3">
+        <a href="/dashboard" class="h-10 w-10 rounded-xl bg-amber-500 flex items-center justify-center font-bold text-slate-950 shadow-lg shadow-amber-500/20 text-lg">
+          <i class="fa-solid fa-graduation-cap"></i>
+        </a>
+        <div>
+          <span class="font-bold text-base tracking-tight text-white">SMVITM Campus Directory</span>
+          <span class="text-[11px] block text-amber-400 font-mono">Academic Faculty & Staff Database</span>
+        </div>
+      </div>
+
+      <div class="hidden md:flex items-center space-x-1">
+        <a href="/dashboard" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800 transition flex items-center space-x-2">
+          <i class="fa-solid fa-chart-pie text-xs"></i>
+          <span>Academic Dashboard</span>
+        </a>
+        <a href="/employees" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-amber-500/20 text-amber-300 border border-amber-500/30 flex items-center space-x-2">
+          <i class="fa-solid fa-chalkboard-user text-xs"></i>
+          <span>Faculty & Staff ({{ employees|length }})</span>
+        </a>
+        <a href="/payments" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800 transition flex items-center space-x-2">
+          <i class="fa-solid fa-receipt text-xs"></i>
+          <span>Student Fees & Accounts</span>
+        </a>
+        <a href="/files" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800 transition flex items-center space-x-2">
+          <i class="fa-solid fa-vault text-xs"></i>
+          <span>Exam Papers & IA Marks</span>
+        </a>
+        <a href="/terminal" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-cyan-400 hover:bg-cyan-500/10 transition flex items-center space-x-2 border border-cyan-500/20">
+          <i class="fa-solid fa-terminal text-xs"></i>
+          <span>Campus Shell</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="flex items-center space-x-4">
+      <a href="/admin.html" class="text-xs font-mono text-cyan-400 bg-cyan-950/40 hover:bg-cyan-900/50 border border-cyan-800/60 px-3 py-1.5 rounded-lg transition flex items-center space-x-1.5">
+        <i class="fa-solid fa-shield-halved"></i>
+        <span>Campus SOC</span>
+      </a>
+      <a href="/" class="text-slate-400 hover:text-rose-400 text-sm ml-2" title="Sign Out">
+        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Main Body -->
+  <main class="flex-grow max-w-7xl w-full mx-auto px-6 py-8">
+
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+      <div>
+        <h1 class="text-2xl font-bold tracking-tight text-white flex items-center space-x-3">
+          <span>SMVITM Academic Faculty & Staff Directory</span>
+          <span class="text-xs font-mono bg-amber-500/20 text-amber-300 px-2.5 py-1 rounded-md border border-amber-500/30">
+            {{ employees|length }} Verified Staff
+          </span>
+        </h1>
+        <p class="text-xs text-slate-400 mt-1">
+          Principal, Deans, Heads of Departments (HOD), Professors, Assistant Professors and Administration.
+        </p>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center space-x-3">
+        <a href="/files/download/SMVITM_Final_Internal_Assessment_Marks_Ledger.xlsx" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-4 py-2 rounded-xl text-xs flex items-center space-x-2 shadow-lg shadow-amber-500/20 transition">
+          <i class="fa-solid fa-download"></i>
+          <span>Export Faculty Roster (Decoy)</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Search & Filter Bar -->
+    <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-4 mb-6 flex flex-col sm:flex-row gap-4 items-center justify-between">
+      <div class="relative w-full sm:w-96">
+        <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
+          <i class="fa-solid fa-magnifying-glass text-xs"></i>
+        </div>
+        <input
+          id="searchInput"
+          type="text"
+          placeholder="Filter by name, department, designation, or email..."
+          onkeyup="filterEmployees()"
+          class="w-full bg-slate-950 border border-slate-700 rounded-xl pl-9 pr-4 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition"
+        >
+      </div>
+      <div class="flex items-center space-x-2 text-xs text-slate-400 w-full sm:w-auto justify-end">
+        <span>Department:</span>
+        <select id="deptFilter" onchange="filterEmployees()" class="bg-slate-950 border border-slate-700 rounded-lg px-2.5 py-1.5 text-xs text-slate-200 focus:outline-none">
+          <option value="">All Departments</option>
+          <option value="Computer Science">Computer Science & Engg</option>
+          <option value="Artificial Intelligence">AI & Machine Learning</option>
+          <option value="Electronics">Electronics & Comm (ECE)</option>
+          <option value="Mechanical">Mechanical Engineering</option>
+          <option value="Civil">Civil Engineering</option>
+          <option value="Administration">Administration & Exam Cell</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Employees Table -->
+    <div class="bg-slate-900/80 border border-slate-800 rounded-2xl overflow-hidden shadow-2xl">
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse" id="employeesTable">
+          <thead>
+            <tr class="border-b border-slate-800 bg-slate-900 text-[11px] font-semibold text-slate-400 uppercase tracking-wider font-mono">
+              <th class="py-3 px-4">Faculty ID</th>
+              <th class="py-3 px-4">Faculty Member</th>
+              <th class="py-3 px-4">Designation</th>
+              <th class="py-3 px-4">Department</th>
+              <th class="py-3 px-4">Official Email</th>
+              <th class="py-3 px-4">Block / Room</th>
+              <th class="py-3 px-4">Status</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800 text-xs">
+            {% for emp in employees %}
+            <tr class="table-row-hover transition hover:bg-slate-850">
+              <td class="py-3 px-4 font-mono text-slate-400">#SMV-{{ emp.id }}</td>
+              <td class="py-3 px-4 font-semibold text-white flex items-center space-x-2.5">
+                <div class="w-7 h-7 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/30 flex items-center justify-center font-bold text-[10px]">
+                  {{ emp.name[:2]|upper }}
+                </div>
+                <span>{{ emp.name }}</span>
+              </td>
+              <td class="py-3 px-4 text-slate-300 font-medium">{{ emp.role }}</td>
+              <td class="py-3 px-4 text-slate-400">
+                <span class="inline-block px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-[11px]">
+                  {{ emp.department or 'Engineering' }}
+                </span>
+              </td>
+              <td class="py-3 px-4 font-mono text-amber-400">{{ emp.email }}</td>
+              <td class="py-3 px-4 text-slate-400">{{ emp.location or 'Campus' }}</td>
+              <td class="py-3 px-4">
+                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-medium bg-emerald-950 text-emerald-400 border border-emerald-800">
+                  <span class="w-1.5 h-1.5 mr-1 bg-emerald-400 rounded-full"></span>
+                  Active
+                </span>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="border-t border-slate-800 bg-slate-900/80 px-6 py-4 text-center text-xs text-slate-500 font-mono">
+    Shri Madhwa Vadiraja Institute of Technology & Management &bull; Faculty Directory Honeypot Decoy.
+  </footer>
+
+  <script>
+    function filterEmployees() {
+      const search = document.getElementById('searchInput').value.toLowerCase();
+      const dept = document.getElementById('deptFilter').value.toLowerCase();
+      const rows = document.querySelectorAll('#employeesTable tbody tr');
+
+      rows.forEach(row => {
+        const text = row.innerText.toLowerCase();
+        const matchesSearch = text.includes(search);
+        const matchesDept = !dept || text.includes(dept);
+
+        if (matchesSearch && matchesDept) {
+          row.style.display = '';
+        } else {
+          row.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>

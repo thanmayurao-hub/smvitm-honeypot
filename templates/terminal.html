@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Campus Core Server Console - SMVITM Bantakal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/public/css/style.css">
+  <style>
+    .terminal-body {
+      background: #090d16;
+      color: #38bdf8;
+      font-family: 'Consolas', 'Courier New', Courier, monospace;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    .terminal-input {
+      background: transparent;
+      outline: none;
+      border: none;
+      color: #f1f5f9;
+      font-family: inherit;
+      font-size: inherit;
+      width: 100%;
+    }
+    .terminal-prompt {
+      color: #22c55e;
+      font-weight: bold;
+    }
+    .terminal-path {
+      color: #38bdf8;
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col selection:bg-amber-500 selection:text-slate-950">
+
+  <!-- Top Navigation Bar -->
+  <nav class="border-b border-slate-800 bg-slate-900/95 backdrop-blur sticky top-0 z-50 px-6 py-3.5 flex items-center justify-between">
+    <div class="flex items-center space-x-8">
+      <div class="flex items-center space-x-3">
+        <a href="/dashboard" class="h-10 w-10 rounded-xl bg-amber-500 flex items-center justify-center font-bold text-slate-950 shadow-lg shadow-amber-500/20 text-lg">
+          <i class="fa-solid fa-graduation-cap"></i>
+        </a>
+        <div>
+          <span class="font-bold text-base tracking-tight text-white">SMVITM Campus Server Shell</span>
+          <span class="text-[11px] block text-amber-400 font-mono">Restricted Management Console</span>
+        </div>
+      </div>
+
+      <div class="hidden md:flex items-center space-x-1">
+        <a href="/dashboard" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800 transition flex items-center space-x-2">
+          <i class="fa-solid fa-chart-pie text-xs"></i>
+          <span>Academic Dashboard</span>
+        </a>
+        <a href="/employees" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800 transition flex items-center space-x-2">
+          <i class="fa-solid fa-chalkboard-user text-xs"></i>
+          <span>Faculty & Staff</span>
+        </a>
+        <a href="/payments" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800 transition flex items-center space-x-2">
+          <i class="fa-solid fa-receipt text-xs"></i>
+          <span>Student Fees & Accounts</span>
+        </a>
+        <a href="/files" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800 transition flex items-center space-x-2">
+          <i class="fa-solid fa-vault text-xs"></i>
+          <span>Exam Papers & IA Marks</span>
+        </a>
+        <a href="/terminal" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 flex items-center space-x-2">
+          <i class="fa-solid fa-terminal text-xs"></i>
+          <span>Campus Shell</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="flex items-center space-x-4">
+      <a href="/admin.html" class="text-xs font-mono text-cyan-400 bg-cyan-950/40 hover:bg-cyan-900/50 border border-cyan-800/60 px-3 py-1.5 rounded-lg transition flex items-center space-x-1.5">
+        <i class="fa-solid fa-shield-halved"></i>
+        <span>Campus SOC</span>
+      </a>
+      <a href="/" class="text-slate-400 hover:text-rose-400 text-sm ml-2" title="Sign Out">
+        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Main Body -->
+  <main class="flex-grow max-w-5xl w-full mx-auto px-4 py-8 flex flex-col">
+
+    <div class="mb-4 flex items-center justify-between">
+      <div>
+        <h1 class="text-xl font-bold tracking-tight text-white flex items-center space-x-2">
+          <i class="fa-solid fa-terminal text-cyan-400"></i>
+          <span>SMVITM Campus Core Server &bull; smvitm-campus-core01</span>
+        </h1>
+        <p class="text-xs text-slate-400 mt-0.5">
+          Sandboxed execution environment. Try exploring with commands like <code class="text-emerald-400">ls -la</code>, <code class="text-emerald-400">whoami</code>, <code class="text-emerald-400">cat .env</code>, or <code class="text-emerald-400">cat /etc/passwd</code>.
+        </p>
+      </div>
+
+      <button onclick="clearTerminal()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs text-slate-300 font-mono transition">
+        Clear Buffer
+      </button>
+    </div>
+
+    <!-- Terminal Window Container -->
+    <div class="flex-grow bg-[#090d16] border border-slate-800 rounded-2xl overflow-hidden shadow-2xl flex flex-col min-h-[500px]">
+      <!-- Titlebar -->
+      <div class="bg-[#111827] px-4 py-2.5 border-b border-slate-800 flex items-center justify-between">
+        <div class="flex items-center space-x-2">
+          <div class="w-3 h-3 rounded-full bg-rose-500"></div>
+          <div class="w-3 h-3 rounded-full bg-amber-500"></div>
+          <div class="w-3 h-3 rounded-full bg-emerald-500"></div>
+          <span class="ml-2 text-xs font-mono text-slate-400">bash — smvitm_admin@smvitm-campus-core01: /var/www/smvitm-academic-portal</span>
+        </div>
+        <span class="text-[11px] font-mono text-amber-400 bg-amber-950/60 px-2 py-0.5 rounded border border-amber-800">
+          CAMPUS_HONEYPOT_SANDBOX
+        </span>
+      </div>
+
+      <!-- Output Screen -->
+      <div id="terminalBody" class="flex-grow p-4 overflow-y-auto terminal-body space-y-2 select-text" onclick="focusInput()">
+        <div class="text-slate-400">
+          Ubuntu 22.04.3 LTS (GNU/Linux 5.15.0-89-generic x86_64)<br>
+          * Node: smvitm-campus-core01.internal.smvitm.ac.in<br>
+          * Institutional Affiliation: VTU Belagavi (College Code: 4MW)<br>
+          <br>
+          Last login: Wed Oct 14 09:12:44 2026 from 10.10.4.15<br>
+          Type <span class="text-cyan-400 font-bold">help</span> to view available system commands.
+        </div>
+        <div id="outputHistory"></div>
+
+        <!-- Active Input Line -->
+        <div class="flex items-center space-x-2 pt-1" id="inputLine">
+          <span class="terminal-prompt select-none">smvitm_admin@core01</span><span class="text-slate-500 select-none">:</span><span class="terminal-path select-none">/var/www/smvitm-academic-portal</span><span class="text-slate-300 select-none">$</span>
+          <input
+            id="cmdInput"
+            type="text"
+            autofocus
+            autocomplete="off"
+            spellcheck="false"
+            class="terminal-input flex-1"
+            onkeydown="handleKey(event)"
+          >
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="border-t border-slate-800 bg-slate-900/80 px-6 py-4 text-center text-xs text-slate-500 font-mono">
+    SMVITM Simulated Campus Server Shell. Every command keystroke is streamed to the Campus SOC.
+  </footer>
+
+  <script>
+    const cmdHistory = [];
+    let historyIdx = -1;
+
+    function focusInput() {
+      document.getElementById('cmdInput').focus();
+    }
+
+    function clearTerminal() {
+      document.getElementById('outputHistory').innerHTML = '';
+      focusInput();
+    }
+
+    async function handleKey(e) {
+      if (e.key === 'Enter') {
+        const input = document.getElementById('cmdInput');
+        const cmd = input.value.trim();
+        input.value = '';
+
+        if (!cmd) return;
+
+        cmdHistory.push(cmd);
+        historyIdx = cmdHistory.length;
+
+        const historyEl = document.getElementById('outputHistory');
+        const entryDiv = document.createElement('div');
+        entryDiv.className = 'mt-2';
+        entryDiv.innerHTML = `
+          <div class="flex items-center space-x-2">
+            <span class="terminal-prompt">smvitm_admin@core01</span>:<span class="terminal-path">/var/www/smvitm-academic-portal</span>$
+            <span class="text-white font-bold ml-1">${escapeHtml(cmd)}</span>
+          </div>
+        `;
+
+        if (cmd.toLowerCase() === 'clear') {
+          clearTerminal();
+          return;
+        }
+
+        try {
+          const res = await fetch('/api/terminal/exec', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ command: cmd })
+          });
+          const data = await res.json();
+          const outPre = document.createElement('pre');
+          outPre.className = 'text-slate-300 whitespace-pre-wrap font-mono mt-1 text-xs';
+          outPre.textContent = data.output || '';
+          entryDiv.appendChild(outPre);
+        } catch (err) {
+          const errPre = document.createElement('pre');
+          errPre.className = 'text-rose-400 whitespace-pre-wrap font-mono mt-1 text-xs';
+          errPre.textContent = 'Campus daemon connection timeout.';
+          entryDiv.appendChild(errPre);
+        }
+
+        historyEl.appendChild(entryDiv);
+        const termBody = document.getElementById('terminalBody');
+        termBody.scrollTop = termBody.scrollHeight;
+      } else if (e.key === 'ArrowUp') {
+        if (historyIdx > 0) {
+          historyIdx--;
+          document.getElementById('cmdInput').value = cmdHistory[historyIdx] || '';
+        }
+      } else if (e.key === 'ArrowDown') {
+        if (historyIdx < cmdHistory.length - 1) {
+          historyIdx++;
+          document.getElementById('cmdInput').value = cmdHistory[historyIdx] || '';
+        } else {
+          historyIdx = cmdHistory.length;
+          document.getElementById('cmdInput').value = '';
+        }
+      }
+    }
+
+    function escapeHtml(str) {
+      return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+  </script>
+</body>
+</html>

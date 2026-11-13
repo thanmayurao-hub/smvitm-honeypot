@@ -1,0 +1,28 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Local environment and secret credentials
+.env
+.env.local
+.env.*.local
+
+# Local binaries and downloads
+bin/
+cloudflared.exe
+*.zip
+*.tar.gz
+
+# Local logs and runtime state
+*.log
+.vercel/
+
+# Local Windows launcher scripts (optional for cloud)
+*.bat
+
+# OS generated files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
