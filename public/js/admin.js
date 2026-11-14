@@ -27,7 +27,7 @@ function toggleTokenVisibility() {
 
 function switchTab(tabId) {
   activeTab = tabId;
-  const tabs = ['logs', 'trapped', 'canaries', 'blocklist', 'adaptive'];
+  const tabs = ['logs', 'trapped', 'canaries', 'blocklist', 'adaptive', 'ml'];
   tabs.forEach(t => {
     const section = document.getElementById(`tab-${t}`);
     const btn = document.getElementById(`tabBtn-${t}`);

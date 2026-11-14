@@ -1,0 +1,17 @@
+{
+  "model_name": "Support Vector Machine (SVM)",
+  "accuracy": 99.92144540455617,
+  "precision": 99.9218024708991,
+  "recall": 99.92144540455617,
+  "f1_score": 99.92149259536775,
+  "inference_latency_ms": 0.0013052153006746184,
+  "training_date": "2026-11-14 09:59:33",
+  "class_labels": [
+    "Benign",
+    "Brute_Force",
+    "Path_Traversal",
+    "SQL_Injection",
+    "XSS_Probe"
+  ],
+  "institution": "Shri Madhwa Vadiraja Institute of Technology & Management (SMVITM, Bantakal)"
+}

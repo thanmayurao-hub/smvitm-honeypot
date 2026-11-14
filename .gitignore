@@ -13,6 +13,8 @@ bin/
 cloudflared.exe
 *.zip
 *.tar.gz
+*.joblib
+.mplcache/
 
 # Local logs and runtime state
 *.log

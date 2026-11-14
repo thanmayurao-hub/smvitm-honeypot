@@ -125,6 +125,10 @@
         <i class="fa-solid fa-sliders text-cyan-400"></i>
         <span>Adaptive Defense & Attack Simulator</span>
       </button>
+      <button onclick="switchTab('ml')" id="tabBtn-ml" class="py-2.5 px-4 rounded-t-lg border-b-2 border-transparent text-slate-400 hover:text-white flex items-center space-x-2">
+        <i class="fa-solid fa-brain text-emerald-400"></i>
+        <span>ML Model Benchmarks</span>
+      </button>
     </div>
 
     <!-- TAB 1: Live Attack Feed -->
@@ -394,6 +398,183 @@
             <i class="fa-solid fa-trash-can"></i>
             <span>Reset All Telemetry Logs</span>
           </button>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- TAB 6: Machine Learning Model Benchmarks & Outcomes -->
+    <section id="tab-ml" class="hidden space-y-6">
+      
+      <!-- Top Overview Banner -->
+      <div class="bg-gradient-to-r from-emerald-950/40 via-slate-900 to-cyan-950/40 border border-emerald-500/30 rounded-2xl p-6">
+        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div>
+            <div class="flex items-center space-x-2 text-emerald-400 font-bold text-xs uppercase tracking-wider mb-1">
+              <i class="fa-solid fa-microchip"></i>
+              <span>Intrusion Detection Intelligence</span>
+            </div>
+            <h3 class="text-lg font-bold text-white">Multi-Model Machine Learning Benchmarks & Graphs</h3>
+            <p class="text-xs text-slate-300 mt-1 max-w-2xl leading-relaxed">
+              Trained and validated on 5,091 real-world and synthetic intrusion detection vectors across 5 distinct threat classes (Benign, SQLi, Brute-Force, Path Traversal, XSS). Evaluated using TF-IDF subword character n-grams.
+            </p>
+          </div>
+          <div class="bg-slate-900/90 border border-emerald-500/40 rounded-xl px-4 py-2 text-right">
+            <span class="text-[10px] text-slate-400 font-mono block">BEST DEPLOYED MODEL</span>
+            <span class="text-sm font-bold text-emerald-400 font-mono">Linear SVM (99.92%)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Models Performance Leaderboard Table -->
+      <div class="bg-slate-900/60 border border-slate-800 rounded-2xl overflow-hidden shadow-xl">
+        <div class="p-4 border-b border-slate-800 flex items-center justify-between">
+          <h4 class="text-xs font-bold text-white uppercase tracking-wider flex items-center space-x-2">
+            <i class="fa-solid fa-ranking-star text-amber-400"></i>
+            <span>Model Comparison Leaderboard</span>
+          </h4>
+          <span class="text-[11px] font-mono text-slate-400">Stratified 5-Fold Cross Validation</span>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead class="bg-slate-900/90 border-b border-slate-800 text-[11px] font-mono text-slate-400 uppercase tracking-wider">
+              <tr>
+                <th class="py-3 px-4">Rank</th>
+                <th class="py-3 px-4">Model Architecture</th>
+                <th class="py-3 px-4">Train Acc</th>
+                <th class="py-3 px-4">Test Accuracy</th>
+                <th class="py-3 px-4">Precision</th>
+                <th class="py-3 px-4">Recall</th>
+                <th class="py-3 px-4">F1-Score</th>
+                <th class="py-3 px-4">Inference Latency</th>
+                <th class="py-3 px-4 text-right">Status</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-800/80 text-xs font-mono">
+              <tr class="hover:bg-slate-850/60 bg-emerald-950/10">
+                <td class="py-3 px-4 text-emerald-400 font-bold">#1</td>
+                <td class="py-3 px-4 font-bold text-white">Support Vector Machine (Linear SVM)</td>
+                <td class="py-3 px-4 text-slate-300">99.90%</td>
+                <td class="py-3 px-4 text-emerald-400 font-bold">99.92%</td>
+                <td class="py-3 px-4 text-slate-300">99.92%</td>
+                <td class="py-3 px-4 text-slate-300">99.92%</td>
+                <td class="py-3 px-4 text-emerald-400 font-bold">99.92%</td>
+                <td class="py-3 px-4 text-cyan-400">0.001 ms</td>
+                <td class="py-3 px-4 text-right"><span class="px-2 py-0.5 rounded text-[10px] bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Active Production</span></td>
+              </tr>
+              <tr class="hover:bg-slate-850/60">
+                <td class="py-3 px-4 text-slate-400 font-bold">#2</td>
+                <td class="py-3 px-4 font-semibold text-white">Logistic Regression (L2 Regularized)</td>
+                <td class="py-3 px-4 text-slate-300">99.82%</td>
+                <td class="py-3 px-4 text-emerald-400 font-bold">99.92%</td>
+                <td class="py-3 px-4 text-slate-300">99.92%</td>
+                <td class="py-3 px-4 text-slate-300">99.92%</td>
+                <td class="py-3 px-4 text-emerald-400 font-bold">99.92%</td>
+                <td class="py-3 px-4 text-cyan-400">0.001 ms</td>
+                <td class="py-3 px-4 text-right"><span class="px-2 py-0.5 rounded text-[10px] bg-slate-800 text-slate-400">Benchmarked</span></td>
+              </tr>
+              <tr class="hover:bg-slate-850/60">
+                <td class="py-3 px-4 text-slate-400 font-bold">#3</td>
+                <td class="py-3 px-4 font-semibold text-white">Multilayer Perceptron (MLP Neural Net)</td>
+                <td class="py-3 px-4 text-slate-300">99.90%</td>
+                <td class="py-3 px-4 text-amber-400 font-bold">99.84%</td>
+                <td class="py-3 px-4 text-slate-300">99.84%</td>
+                <td class="py-3 px-4 text-slate-300">99.84%</td>
+                <td class="py-3 px-4 text-amber-400 font-bold">99.84%</td>
+                <td class="py-3 px-4 text-cyan-400">0.009 ms</td>
+                <td class="py-3 px-4 text-right"><span class="px-2 py-0.5 rounded text-[10px] bg-slate-800 text-slate-400">Benchmarked</span></td>
+              </tr>
+              <tr class="hover:bg-slate-850/60">
+                <td class="py-3 px-4 text-slate-400 font-bold">#4</td>
+                <td class="py-3 px-4 font-semibold text-white">Decision Tree (CART Classifier)</td>
+                <td class="py-3 px-4 text-slate-300">99.74%</td>
+                <td class="py-3 px-4 text-amber-400 font-bold">99.84%</td>
+                <td class="py-3 px-4 text-slate-300">99.84%</td>
+                <td class="py-3 px-4 text-slate-300">99.84%</td>
+                <td class="py-3 px-4 text-amber-400 font-bold">99.84%</td>
+                <td class="py-3 px-4 text-cyan-400">0.004 ms</td>
+                <td class="py-3 px-4 text-right"><span class="px-2 py-0.5 rounded text-[10px] bg-slate-800 text-slate-400">Benchmarked</span></td>
+              </tr>
+              <tr class="hover:bg-slate-850/60">
+                <td class="py-3 px-4 text-slate-400 font-bold">#5</td>
+                <td class="py-3 px-4 font-semibold text-white">Gradient Boosting (GBDT)</td>
+                <td class="py-3 px-4 text-slate-300">99.90%</td>
+                <td class="py-3 px-4 text-amber-400 font-bold">99.69%</td>
+                <td class="py-3 px-4 text-slate-300">99.69%</td>
+                <td class="py-3 px-4 text-slate-300">99.69%</td>
+                <td class="py-3 px-4 text-amber-400 font-bold">99.69%</td>
+                <td class="py-3 px-4 text-cyan-400">0.015 ms</td>
+                <td class="py-3 px-4 text-right"><span class="px-2 py-0.5 rounded text-[10px] bg-slate-800 text-slate-400">Benchmarked</span></td>
+              </tr>
+              <tr class="hover:bg-slate-850/60">
+                <td class="py-3 px-4 text-slate-400 font-bold">#6</td>
+                <td class="py-3 px-4 font-semibold text-white">Random Forest (Ensemble Trees)</td>
+                <td class="py-3 px-4 text-slate-300">99.50%</td>
+                <td class="py-3 px-4 text-amber-400 font-bold">99.53%</td>
+                <td class="py-3 px-4 text-slate-300">99.53%</td>
+                <td class="py-3 px-4 text-slate-300">99.53%</td>
+                <td class="py-3 px-4 text-amber-400 font-bold">99.53%</td>
+                <td class="py-3 px-4 text-cyan-400">0.046 ms</td>
+                <td class="py-3 px-4 text-right"><span class="px-2 py-0.5 rounded text-[10px] bg-slate-800 text-slate-400">Benchmarked</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Generated Graphs Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        
+        <!-- Graph 1: Metrics Bar Chart -->
+        <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-5 space-y-3">
+          <div class="flex items-center justify-between">
+            <h4 class="text-sm font-bold text-white flex items-center space-x-2">
+              <i class="fa-solid fa-chart-column text-blue-400"></i>
+              <span>Accuracy & F1-Score Comparison</span>
+            </h4>
+            <span class="text-[11px] font-mono text-slate-400">model_metrics_comparison.png</span>
+          </div>
+          <div class="bg-slate-950 rounded-xl overflow-hidden border border-slate-800/80">
+            <img src="/public/results/model_metrics_comparison.png" alt="Model Metrics Comparison" class="w-full h-auto object-contain hover:scale-105 transition duration-300">
+          </div>
+          <p class="text-[11px] text-slate-400">
+            Comparing Test Accuracy, Precision, Recall, and F1-Scores across Random Forest, SVM, Decision Tree, Logistic Regression, GBDT, and MLP.
+          </p>
+        </div>
+
+        <!-- Graph 2: Latency vs Accuracy -->
+        <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-5 space-y-3">
+          <div class="flex items-center justify-between">
+            <h4 class="text-sm font-bold text-white flex items-center space-x-2">
+              <i class="fa-solid fa-bolt text-amber-400"></i>
+              <span>Operational Latency vs Accuracy Frontier</span>
+            </h4>
+            <span class="text-[11px] font-mono text-slate-400">latency_vs_accuracy.png</span>
+          </div>
+          <div class="bg-slate-950 rounded-xl overflow-hidden border border-slate-800/80">
+            <img src="/public/results/latency_vs_accuracy.png" alt="Latency vs Accuracy" class="w-full h-auto object-contain hover:scale-105 transition duration-300">
+          </div>
+          <p class="text-[11px] text-slate-400">
+            Linear SVM and Logistic Regression achieved the highest detection accuracy with the lowest inference delay (&lt; 0.002 ms per inspection).
+          </p>
+        </div>
+
+        <!-- Graph 3: Confusion Matrix Grid (Full Width) -->
+        <div class="lg:col-span-2 bg-slate-900/60 border border-slate-800 rounded-2xl p-5 space-y-3">
+          <div class="flex items-center justify-between">
+            <h4 class="text-sm font-bold text-white flex items-center space-x-2">
+              <i class="fa-solid fa-table-cells text-cyan-400"></i>
+              <span>Multi-Class Confusion Matrices (Normalized by Class)</span>
+            </h4>
+            <span class="text-[11px] font-mono text-slate-400">confusion_matrices_grid.png</span>
+          </div>
+          <div class="bg-slate-950 rounded-xl overflow-hidden border border-slate-800/80">
+            <img src="/public/results/confusion_matrices_grid.png" alt="Confusion Matrices Grid" class="w-full h-auto object-contain hover:scale-105 transition duration-300">
+          </div>
+          <p class="text-[11px] text-slate-400">
+            True vs. predicted classifications across Benign, SQL Injection, Path Traversal, Brute-Force, and XSS probe categories for all 6 models.
+          </p>
         </div>
 
       </div>
