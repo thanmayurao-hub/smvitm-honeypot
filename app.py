@@ -95,7 +95,7 @@ ml_detector = MLThreatDetector()
 app = Flask(
     __name__,
     static_folder=os.path.join(BASE, "public"),
-    static_url_path="/static",
+    static_url_path="",
     template_folder=os.path.join(BASE, "templates")
 )
 app.secret_key = SECRET_KEY

@@ -6,7 +6,7 @@
   <title>SMVITM - Cyber Defense & SOC Threat Intelligence Center</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col font-sans selection:bg-amber-500 selection:text-slate-950">
 
@@ -537,7 +537,7 @@
             <span class="text-[11px] font-mono text-slate-400">model_metrics_comparison.png</span>
           </div>
           <div class="bg-slate-950 rounded-xl overflow-hidden border border-slate-800/80">
-            <img src="/static/results/model_metrics_comparison.png" alt="Model Metrics Comparison" class="w-full h-auto object-contain hover:scale-105 transition duration-300">
+            <img src="{{ url_for('static', filename='results/model_metrics_comparison.png') }}" alt="Model Metrics Comparison" class="w-full h-auto object-contain hover:scale-105 transition duration-300">
           </div>
           <p class="text-[11px] text-slate-400">
             Comparing Test Accuracy, Precision, Recall, and F1-Scores across Random Forest, SVM, Decision Tree, Logistic Regression, GBDT, and MLP.
@@ -554,7 +554,7 @@
             <span class="text-[11px] font-mono text-slate-400">latency_vs_accuracy.png</span>
           </div>
           <div class="bg-slate-950 rounded-xl overflow-hidden border border-slate-800/80">
-            <img src="/static/results/latency_vs_accuracy.png" alt="Latency vs Accuracy" class="w-full h-auto object-contain hover:scale-105 transition duration-300">
+            <img src="{{ url_for('static', filename='results/latency_vs_accuracy.png') }}" alt="Latency vs Accuracy" class="w-full h-auto object-contain hover:scale-105 transition duration-300">
           </div>
           <p class="text-[11px] text-slate-400">
             Linear SVM and Logistic Regression achieved the highest detection accuracy with the lowest inference delay (&lt; 0.002 ms per inspection).
@@ -571,7 +571,7 @@
             <span class="text-[11px] font-mono text-slate-400">confusion_matrices_grid.png</span>
           </div>
           <div class="bg-slate-950 rounded-xl overflow-hidden border border-slate-800/80">
-            <img src="/static/results/confusion_matrices_grid.png" alt="Confusion Matrices Grid" class="w-full h-auto object-contain hover:scale-105 transition duration-300">
+            <img src="{{ url_for('static', filename='results/confusion_matrices_grid.png') }}" alt="Confusion Matrices Grid" class="w-full h-auto object-contain hover:scale-105 transition duration-300">
           </div>
           <p class="text-[11px] text-slate-400">
             True vs. predicted classifications across Benign, SQL Injection, Path Traversal, Brute-Force, and XSS probe categories for all 6 models.
@@ -589,6 +589,6 @@
     Shri Madhwa Vadiraja Institute of Technology & Management (SMVITM) &bull; Campus Cyber Defense SOC &bull; Token: <span class="text-amber-400">{{ admin_token }}</span>
   </footer>
 
-  <script src="/static/js/admin.js"></script>
+  <script src="{{ url_for('static', filename='js/admin.js') }}"></script>
 </body>
 </html>
