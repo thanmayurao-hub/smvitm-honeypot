@@ -17,6 +17,7 @@ from flask import Flask, render_template, request, jsonify, send_from_directory,
 
 from engine.adaptive import AdaptiveEngine
 from engine.canary import CanaryManager
+from engine.ml_detector import MLThreatDetector
 
 # --- CONFIG & PATHS ---
 import shutil
@@ -87,6 +88,7 @@ for p, default in [
 adaptive_cfg = cfg.get("ADAPTIVE_ENGINE", {})
 adaptive_engine = AdaptiveEngine(adaptive_cfg)
 canary_mgr = CanaryManager(DATA_DIR)
+ml_detector = MLThreatDetector()
 
 # --- FLASK APP ---
 # Explicit absolute paths ensure templates and public assets resolve properly on Vercel
@@ -469,12 +471,17 @@ def login():
 
         if len(set(unames)) == 1 and len(set(pws)) >= 3:
             # TRAP! Save and alert
+            # Run ML classification on the credential payload
+            ml_payload = f"POST /login username={unames[0]} passwords={','.join(pws)}"
+            ml_label, ml_malicious = ml_detector.predict(ml_payload)
+
             entry = {
                 "ip": ip,
                 "username": unames[0],
                 "passwords": pws,
                 "time": ts,
                 "threat_score": 95,
+                "ml_label": ml_label if ml_malicious else "Brute_Force",
                 "action": "Redirected to Deceptive Honeypot Dashboard"
             }
             save_trapped_entry(entry)
@@ -639,7 +646,8 @@ def admin_simulate():
             "passwords": pws,
             "time": ts,
             "threat_score": 95,
-            "action": "Simulated Trap Triggered & Logged"
+            "ml_label": "Brute_Force",
+            "action": "Sandboxed in Deceptive Honeypot Dashboard"
         }
         save_trapped_entry(entry)
         return jsonify({"ok": True, "message": f"Simulated 3-step credential stuffing trap triggered from {sim_ip}"})

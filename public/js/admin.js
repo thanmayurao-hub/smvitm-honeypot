@@ -154,8 +154,11 @@ async function loadTrapped() {
 
 function renderTrappedTable() {
   const tbody = document.getElementById('trappedTableBody');
-  if (cachedTrapped.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="7" class="py-8 text-center text-slate-500">No trapped sessions yet. Trigger the brute-force trap to observe!</td></tr>`;
+  if (!cachedTrapped || cachedTrapped.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="8" class="py-8 text-center text-slate-500">
+      <i class="fa-solid fa-shield-halved mr-2 text-slate-600"></i>
+      No trapped attackers yet. Use the <strong class="text-blue-400">Attack Simulator</strong> tab to trigger a demo!
+    </td></tr>`;
     return;
   }
 
@@ -163,20 +166,38 @@ function renderTrappedTable() {
     const pws = Array.isArray(t.passwords) ? t.passwords.map(p => `"${escapeHtml(p)}"`).join(', ') : 'N/A';
     const timeStr = t.time ? t.time.replace('T', ' ').replace('Z', '') : 'N/A';
 
+    // Dynamic threat score badge
+    const score = t.threat_score || 95;
+    let badgeClass = 'threat-critical';
+    let levelLabel = 'CRITICAL';
+    if (score < 40) { badgeClass = 'threat-low'; levelLabel = 'LOW'; }
+    else if (score < 60) { badgeClass = 'threat-medium'; levelLabel = 'MEDIUM'; }
+    else if (score < 80) { badgeClass = 'threat-high'; levelLabel = 'HIGH'; }
+
+    // ML classification label (from t.ml_label if present, else derive from passwords tried)
+    const mlLabel = t.ml_label || (Array.isArray(t.passwords) && t.passwords.length >= 3 ? 'Brute_Force' : 'Failed_Login');
+    const mlColor = mlLabel === 'Brute_Force' ? 'text-rose-400' : mlLabel === 'SQL_Injection' ? 'text-amber-400' : 'text-blue-400';
+
+    // Action taken
+    const action = t.action || 'Redirected to Deceptive Honeypot Dashboard';
+
     return `
-      <tr class="hover:bg-slate-900/60 transition">
-        <td class="py-3 px-4 text-slate-400">${timeStr}</td>
+      <tr class="hover:bg-slate-900/60 transition border-b border-slate-800/50">
+        <td class="py-3 px-4 text-slate-400 text-[11px]">${timeStr}</td>
         <td class="py-3 px-4 font-bold text-rose-400">${escapeHtml(t.ip)}</td>
         <td class="py-3 px-4 text-white font-semibold">${escapeHtml(t.username)}</td>
-        <td class="py-3 px-4 text-amber-300 font-mono text-[11px]">${pws}</td>
+        <td class="py-3 px-4 text-amber-300 font-mono text-[11px]" title="${escapeHtml(pws)}">${escapeHtml(pws.substring(0,40))}${pws.length > 40 ? '…' : ''}</td>
         <td class="py-3 px-4">
-          <span class="threat-badge threat-critical">CRITICAL (95)</span>
+          <span class="threat-badge ${badgeClass}">${levelLabel} (${score})</span>
+        </td>
+        <td class="py-3 px-4 text-[11px] font-mono ${mlColor}">
+          <i class="fa-solid fa-robot mr-1"></i>${escapeHtml(mlLabel)}
         </td>
         <td class="py-3 px-4 text-emerald-400 text-xs">
-          <i class="fa-solid fa-lock mr-1"></i> Sandboxed in Decoy
+          <i class="fa-solid fa-lock mr-1"></i> ${escapeHtml(action.substring(0, 30))}
         </td>
         <td class="py-3 px-4 text-right">
-          <button onclick="quickBlockIp('${t.ip}')" class="px-2.5 py-1 rounded bg-rose-600 hover:bg-rose-500 text-white text-[10px] font-bold transition">
+          <button onclick="quickBlockIp('${escapeHtml(t.ip)}')" class="px-2.5 py-1 rounded bg-rose-600 hover:bg-rose-500 text-white text-[10px] font-bold transition">
             Block IP
           </button>
         </td>
